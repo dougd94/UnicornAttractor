@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block page_title %}Bugs Page{% endblock %} {% block page_heading %}Bugs Registration{% endblock %} {% block content %}
+<h1 class="form-margin">Bugs</h1>
+{% if user.is_authenticated %}
+<a href="{% url 'new_bug' %}"><button type="button" class="btn btn-success">Add a Bug</button></a> {% endif %}
+{% for bug in bugs %}
+<div class="row">
+    <div class="col-md-2 col-sm-3 text-center">
+        <p><span class="boldtext">Author:</span> Niel</p>
+    </div>
+    <div class="col-md-10 col-sm-9">
+        <h3>{{ bug.name }}</h3>
+        <p><span class="boldtext">Upvotes:</span> {{ bug.upvotes }} </p>
+        <div class="row">
+            <div class="col-xs-9">
+                <p>{{ bug.decriptions|truncatewords:30 }}</p>
+                <p><a href="{% url 'post_detail' post.id %}" class="btn btn-default">Read more</a></p>
+                <p><span class="boldtext">Created on:</span> {{ bug.created_date }} </p>
+                <p><span class="boldtext">Published on:</span> {{ bug.published_date }} </p>
+                <p><span class="boldtext">Views:</span> {{bug.views}}</p>
+                <p><span class="boldtext">Upvotes:</span> {{ bug.tag }}</p>
+            </div>
+        </div>
+    </div>
+    <hr>
+</div>
+{% endfor %} {% endblock %}
