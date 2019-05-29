@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-2 col-sm-3 text-center">
+        <p><span class="boldtext">Author:</span> {{bug.author}}</p>
+    </div>
+    <div class="col-md-10 col-sm-9">
+        <h3>{{ bug.name }}</h3>
+        <p><span class="boldtext">Status:</span> {{ bug.status }} </p>
+        <p><span class="boldtext">Upvotes:</span> {{ bug.upvotes }} </p>
+        <div class="row">
+            <div class="col-xs-9">
+                <p>{{ bug.decription}}</p>
+                <p><span class="boldtext">Created on:</span> {{ bug.created_date }} </p>
+                <p><span class="boldtext">Views:</span> {{bug.views}}</p>
+                <p><span class="boldtext">Upvotes:</span> {{ bug.tag }}</p>
+            </div>
+        </div>
+    </div>
+    <hr>
+</div>
+{% endblock %}

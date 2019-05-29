@@ -23,7 +23,7 @@ def bug_detail(request, pk):
     bug = get_object_or_404(Bug, pk=pk)
     bug.views += 1
     bug.save()
-    return render(request, "postdetail.html", {'bug': bug})
+    return render(request, "bugdetail.html", {'bug': bug})
   
 @login_required 
 def create_or_edit_bug(request, pk=None):
@@ -43,7 +43,6 @@ def create_or_edit_bug(request, pk=None):
             
             bugdata.author_id = bugauthor_id
             bugdata = form.save()
-            # bug = form.save()
             return redirect(bug_detail, bug.pk)
     else:
         form = BugForm(instance=bug)
