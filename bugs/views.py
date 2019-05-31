@@ -40,13 +40,11 @@ def create_or_edit_bug(request, pk=None):
     if request.method == "POST":
         form = BugForm(request.POST)
         if form.is_valid():
-            bugdata= form.save(commit=False)
-            
-            #get the author id
+            bug_group= form.save(commit=False)
+            #get the author
             bugauthor_id = request.user.id
-            
-            bugdata.author_id = bugauthor_id
-            bugdata = form.save()
+            bug_group.author_id = bugauthor_id
+            bug_group = form.save()
             return redirect(bug_detail, bug.pk)
     else:
         form = BugForm(instance=bug)
