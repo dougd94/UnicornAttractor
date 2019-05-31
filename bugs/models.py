@@ -3,7 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 # Create your models here.
 class Bug(models.Model):
-    Status = (
+    StatusOptions = (
             ('TD', 'To Do'),
             ('D', 'Doing'),
             ('F', 'Finished')
@@ -14,7 +14,7 @@ class Bug(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User , default='')
     views = models.IntegerField(default=0)
-    status = models.CharField(max_length=1, choices=Status, default='TD')
+    status = models.CharField(max_length=1, choices=StatusOptions, default='TD')
 
     def __str__(self):
         return self.name

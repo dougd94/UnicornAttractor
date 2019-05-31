@@ -1,22 +1,16 @@
-{% extends "base.html" %}
-{% block content %}
-<div class="row">
-    <div class="col-md-2 col-sm-3 text-center">
+{% extends "base.html" %} {% block content %}
+<div class="row form-margin">
+    <div class="text-center">
+        <p><span class="{{bug.status}}">Status:</span> {{ bug.status }} </p>
+        <h1>{{ bug.name }}</h1>
         <p><span class="boldtext">Author:</span> {{bug.author}}</p>
-    </div>
-    <div class="col-md-10 col-sm-9">
-        <h3>{{ bug.name }}</h3>
-        <p><span class="boldtext">Status:</span> {{ bug.status }} </p>
         <p><span class="boldtext">Upvotes:</span> {{ bug.upvotes }} </p>
+        <p><span class="boldtext">Created on:</span> {{ bug.created_date }} </p>
+        <p><span class="boldtext">Views:</span> {{bug.views}}</p>
         <div class="row">
-            <div class="col-xs-9">
-                <p>{{ bug.decription}}</p>
-                <p><span class="boldtext">Created on:</span> {{ bug.created_date }} </p>
-                <p><span class="boldtext">Views:</span> {{bug.views}}</p>
-                <p><span class="boldtext">Upvotes:</span> {{ bug.tag }}</p>
-            </div>
+            <h3>Description:</h3>
+            <p>{{bug.description}}</p>
         </div>
     </div>
-    <hr>
 </div>
-{% endblock %}
+<hr> {% endblock %}
