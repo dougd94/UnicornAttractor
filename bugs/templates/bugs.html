@@ -10,14 +10,15 @@
                 <div class="col-4">
                     <h3 class="panel-title">{{ bug.name }}</h3>
                 </div>
+                
                 <div class="col-4 text-right">
-                    <span class="">Upvotes:</span> {{ bug.upvotes }}
+                    <i class="material-icons" alt="upvote">arrow_upward</i> {{ bug.upvotes }}
                 </div>
             </div>
             <div class="panel-body">
-                <p><span class="{{bug.status}}">Status:</span> {{ bug.status }} </p>
-                <p><span class="boldtext">Date Created:</span> {{ bug.created_date }} </p>
-                <p><span class="boldtext">Upvotes:</span> {{ bug.upvotes }} </p>
+                <p><span class="{{bug.status}}">Status: {{ bug.status }}</span>  </p>
+                <p><span class="">Date Created: {{ bug.created_date }} </span> </p>
+                <p><span class=""><i class="material-icons" alt="views">remove_red_eye</i>{{ bug.views }}</span>  </p>
                 <h5>{{bug.author}}</h5>
                 <p class="bug-description">{{ bug.description|truncatewords:30}}</p>
                 <p><a href="{% url 'bug_detail' bug.id %}" class="btn btn-primary">Read more</a></p>
