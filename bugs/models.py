@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Bug(models.Model):
     StatusOptions = (
-            ('TD', 'To Do'),
+            ('T', 'To Do'),
             ('D', 'Doing'),
             ('F', 'Finished')
         )
@@ -14,8 +14,20 @@ class Bug(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User , default='')
     views = models.IntegerField(default=0)
-    status = models.CharField(max_length=1, choices=StatusOptions, default='TD')
+    status = models.CharField(max_length=1, choices=StatusOptions, default='T')
 
     def __str__(self):
         return self.name
         
+class Comments(models.Model):
+    """
+    Comments for under bug pages
+    """
+    bugpk=models.ForeignKey(Bug)
+    author = models.ForeignKey(User)
+    comment = models.TextField(blank=False)
+    created_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
+    
+    
+    def __str__(self):
+        return str(self.author)

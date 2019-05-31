@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
-from .models import Bug
-from .forms import BugForm
+from .models import Bug, Comments
+from .forms import BugForm, CommentForm
 
 
 # Create your views here.
@@ -14,23 +14,27 @@ def all_bugs(request):
     
 def bug_detail(request, pk):
     """
-    Create a view that returns a single
-    Post object based on the post ID (pk) and
-    render it to the 'postdetail.html' template.
-    Or return a 404 error if the post is
-    not found
+    bug pages
     """
     bug = get_object_or_404(Bug, pk=pk)
     bug.views += 1
     bug.save()
+    if request.method == 'POST':
+        bug = Bug.objects.get(pk=pk)
+        comment_form = CommentForm(request.POST)
+        comment = request.POST.get('comment')
+        created_date = request.POST.get('created_date')
+        if comment_form.is_valid():
+            comment_group = comment_form.save(commit=False)
+            comment_group.bugpk_id=pk
+            comment_group.author_id=request.user.id
+            comment_group=comment_form.save()
     return render(request, "bugdetail.html", {'bug': bug})
   
 @login_required 
 def create_or_edit_bug(request, pk=None):
     """
-    Create a view that allows us to create
-    or edit a post depending if the Post ID
-    is null or not
+    create a bug 
     """
     bug = get_object_or_404(Bug, pk=pk) if pk else None
     if request.method == "POST":

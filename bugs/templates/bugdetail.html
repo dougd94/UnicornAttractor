@@ -3,14 +3,25 @@
     <div class="text-center">
         <p><span class="{{bug.status}}">Status:</span> {{ bug.status }} </p>
         <h1>{{ bug.name }}</h1>
-        <p><span class="boldtext">Author:</span> {{bug.author}}</p>
-        <p><span class="boldtext">Upvotes:</span> {{ bug.upvotes }} </p>
-        <p><span class="boldtext">Created on:</span> {{ bug.created_date }} </p>
-        <p><span class="boldtext">Views:</span> {{bug.views}}</p>
+        <p><span class="">Author:</span> {{bug.author}}</p>
+        <p><span class="">Upvotes:</span> {{ bug.upvotes }} </p>
+        <p><span class="">Created on:</span> {{ bug.created_date }} </p>
+        <p><span class="">Views:</span> {{bug.views}}</p>
         <div class="row">
-            <h3>Description:</h3>
+            <h3>Bug Description:</h3>
             <p>{{bug.description}}</p>
         </div>
     </div>
 </div>
-<hr> {% endblock %}
+<hr>
+<div class="row">
+    <h3>Comments:</h3>
+    <p>
+    <form method="POST" action="{% url 'bug_detail' bug.id %}"  enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Add</button>
+    </form>
+    </p>
+</div>
+{% endblock %}

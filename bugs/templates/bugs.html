@@ -7,11 +7,16 @@
     <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-4 display">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">{{ bug.name }}</h3>
+                <div class="col-4">
+                    <h3 class="panel-title">{{ bug.name }}</h3>
+                </div>
+                <div class="col-4 text-right">
+                    <span class="">Upvotes:</span> {{ bug.upvotes }}
+                </div>
             </div>
             <div class="panel-body">
-                <p><span class="boldtext">Date Created:</span> {{ bug.created_date }} </p>
                 <p><span class="{{bug.status}}">Status:</span> {{ bug.status }} </p>
+                <p><span class="boldtext">Date Created:</span> {{ bug.created_date }} </p>
                 <p><span class="boldtext">Upvotes:</span> {{ bug.upvotes }} </p>
                 <h5>{{bug.author}}</h5>
                 <p class="bug-description">{{ bug.description|truncatewords:30}}</p>
