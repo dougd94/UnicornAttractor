@@ -12,13 +12,24 @@ class Bug(models.Model):
     description = models.TextField()
     upvotes = models.DecimalField(max_digits=10, decimal_places=0, default='1')
     created_date = models.DateTimeField(auto_now_add=True)
+    # updated_date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User , default='')
     views = models.IntegerField(default=0)
     status = models.CharField(max_length=1, choices=StatusOptions, default='T')
 
     def __str__(self):
         return self.name
-        
+
+class Votes(models.Model):
+    ''' upvote'''
+    voter = models.ForeignKey(User)
+    bugpk = models.ForeignKey(Bug)
+    class Meta:
+        unique_together = ("voter", "bugpk")
+     
+    def __str__(self):
+        return str(self.voter)
+       
 class Comments(models.Model):
     """
     Comments for under bug pages

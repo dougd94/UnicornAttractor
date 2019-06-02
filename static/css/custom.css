@@ -1,3 +1,15 @@
+a {
+    
+    text-decoration: none;
+    /* no underline */
+}
+
+.upvotebtn {
+    background: none;
+    border: 0;
+    padding: 0;
+}
+
 .form-margin {
     padding-top: 50px;
     margin-top: 20px;
@@ -5,4 +17,16 @@
 
 .logo {
     height: 100px;
+}
+
+.upvote {
+    color: white;
+}
+
+.upvote:hover {
+    color: red;
+}
+
+.upvote:active {
+    color: red;
 }

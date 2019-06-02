@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.utils import timezone
-from .models import Bug, Comments
+from .models import Bug, Comments, Votes
 from .forms import BugForm, CommentForm
 
 
@@ -30,6 +31,39 @@ def bug_detail(request, pk):
             comment_group.author_id=request.user.id
             comment_group=comment_form.save()
     return render(request, "bugdetail.html", {'bug': bug})
+    
+def bug_upvote(request):
+    """
+    bug upvote
+    """
+    if request.method == 'POST':
+        voter=request.user.id
+        bugpk = request.GET.get('bugpk')
+        upvotes = Bug.objects.get(pk=bugpk)
+        
+         # check if the if already voted
+        upvote = Votes.objects.filter(bugpk=bugpk, voter=voter)
+        
+        if not upvote:
+            
+            # save the vote to databaase
+            upvote = Votes(bugpk_id = bugpk, voter_id = request.user.id)
+            upvote.save()
+        
+            count = Votes.objects.filter(bugpk_id=bugpk).count()
+            
+        #   adds upvote to model
+            # upvotes.upvotes = count
+            upvotes.upvotes += 1
+            upvotes.save()
+            messages.success(request, "You have successfully upvoted!")
+            return redirect(reverse('all_bugs'))
+        else: 
+            messages.error = (request, 'You have already upvoted!')
+            return redirect(reverse('all_bugs'))
+            
+        
+        
   
 @login_required 
 def create_or_edit_bug(request, pk=None):
@@ -38,7 +72,7 @@ def create_or_edit_bug(request, pk=None):
     """
     bug = get_object_or_404(Bug, pk=pk) if pk else None
     if request.method == "POST":
-        form = BugForm(request.POST)
+        form = BugForm(request.POST,request.FILES, instance=bug)
         if form.is_valid():
             bug_group= form.save(commit=False)
             #get the author
