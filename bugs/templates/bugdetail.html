@@ -7,9 +7,10 @@
                 <div class="{{bug.status}}">Status: {{ bug.status }}</div>
             </p>
             <p><span class="">Author:</span> {{bug.author}}</p>
-            <p><span class="">Upvotes:</span> {{ bug.upvotes }} </p>
-            <p><span class="">Created on:</span> {{ bug.created_date }} </p>
-            <p><span class="">Views:</span> {{bug.views}}</p>
+             <p><span class="">Created on:</span> {{ bug.created_date }} </p>
+            <a href="upvote/{{ bug.id }}"><i class="material-icons upvotedark" alt="upvote">arrow_upward</i><span class="badge">{{ bug.upvotes }}</span></a>
+            <span class=""><i class="material-icons" alt="views">remove_red_eye</i><span class="badge">{{ bug.views }}</span></span>  
+           
             <div class="row">
                 <h3>Bug Description:</h3>
                 <p>{{bug.description}}</p>

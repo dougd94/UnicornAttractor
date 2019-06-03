@@ -40,6 +40,14 @@ a {
     color: white;
 }
 
+.upvotedark {
+    color: black;
+}
+
+.upvotedark:hover {
+    color: red;
+}
+
 .upvote:hover {
     color: red;
 }

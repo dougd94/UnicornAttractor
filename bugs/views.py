@@ -13,6 +13,7 @@ def all_bugs(request):
         ).order_by('-created_date')
     return render(request, "bugs.html", {"bugs": bugs})
     
+@login_required 
 def bug_detail(request, pk):
     """
     bug pages
@@ -27,7 +28,7 @@ def bug_detail(request, pk):
         created_date = request.POST.get('created_date')
         if comment_form.is_valid():
             comment_group = comment_form.save(commit=False)
-            comment_group.bugpk_id=pk
+            comment_group.bug_id=pk
             comment_group.author_id=request.user.id
             comment_group=comment_form.save()
     return render(request, "bugdetail.html", {'bug': bug})
@@ -47,7 +48,8 @@ def bug_upvote(request, bug_id):
         bugpk.save()
         return redirect(reverse('bugs'))
     else: 
-        messages.error = (request, 'You have already upvoted!')
+        messages.error(request, 'You have already upvoted this!', extra_tags="alert-danger")
+        # messages.error(request, 'Document deleted.')
         return redirect(reverse('bugs'))
 
         
