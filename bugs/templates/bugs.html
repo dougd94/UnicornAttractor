@@ -19,7 +19,7 @@
             <div class="panel-body">
                 <h5>{{bug.author}}</h5>
                 <p>
-                    <div class="{{bug.status}} text-center">Status: {{ bug.status }}</div>
+                    <div class="{{bug.status}} text-center">Status:  <strong>{{ bug.get_status_display }}</strong></div>
                 </p>
                 <p><span class="">Date Created: {{ bug.created_date }} </span> </p>
                 <span class=""><i class="material-icons" alt="views">remove_red_eye</i><span class="badge">{{ bug.views }}</span></span>

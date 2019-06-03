@@ -49,7 +49,6 @@ def bug_upvote(request, bug_id):
         return redirect(reverse('bugs'))
     else: 
         messages.error(request, 'You have already upvoted this!', extra_tags="alert-danger")
-        # messages.error(request, 'Document deleted.')
         return redirect(reverse('bugs'))
 
         

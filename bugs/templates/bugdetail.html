@@ -4,7 +4,7 @@
         <div class="text-center">
             <h1>{{ bug.name }}</h1>
             <p>
-                <div class="{{bug.status}}">Status: {{ bug.status }}</div>
+                <div class="{{bug.status}}">Status: <strong>{{ bug.get_status_display }}</strong></div>
             </p>
             <p><span class="">Author:</span> {{bug.author}}</p>
              <p><span class="">Created on:</span> {{ bug.created_date }} </p>
