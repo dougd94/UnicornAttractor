@@ -1,27 +1,30 @@
 {% extends "base.html" %} {% block content %}
-<div class="row form-margin">
-    <div class="text-center">
-        <p><span class="{{bug.status}}">Status:</span> {{ bug.status }} </p>
-        <h1>{{ bug.name }}</h1>
-        <p><span class="">Author:</span> {{bug.author}}</p>
-        <p><span class="">Upvotes:</span> {{ bug.upvotes }} </p>
-        <p><span class="">Created on:</span> {{ bug.created_date }} </p>
-        <p><span class="">Views:</span> {{bug.views}}</p>
-        <div class="row">
-            <h3>Bug Description:</h3>
-            <p>{{bug.description}}</p>
+<div class="container">
+    <div class="row form-margin">
+        <div class="text-center">
+            <h1>{{ bug.name }}</h1>
+            <p>
+                <div class="{{bug.status}}">Status: {{ bug.status }}</div>
+            </p>
+            <p><span class="">Author:</span> {{bug.author}}</p>
+            <p><span class="">Upvotes:</span> {{ bug.upvotes }} </p>
+            <p><span class="">Created on:</span> {{ bug.created_date }} </p>
+            <p><span class="">Views:</span> {{bug.views}}</p>
+            <div class="row">
+                <h3>Bug Description:</h3>
+                <p>{{bug.description}}</p>
+            </div>
         </div>
     </div>
-</div>
-<hr>
-<div class="row">
-    <h3>Comments:</h3>
-    <p>
-    <form method="POST" action="{% url 'bug_detail' bug.id %}"  enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-success">Add</button>
-    </form>
-    </p>
+    <hr>
+    <div class="row">
+        <h3>Comments:</h3>
+        <p>
+            <form method="POST" action="{% url 'bug_detail' bug.id %}" enctype="multipart/form-data">
+                {% csrf_token %} {{ form.as_p }}
+                <button type="submit" class="btn btn-success">Add</button>
+            </form>
+        </p>
+    </div>
 </div>
 {% endblock %}
