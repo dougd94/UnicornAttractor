@@ -21,7 +21,7 @@
     </div>
     <hr>
     <div class="row">
-        <form method="POST">
+        <form method="POST" class="form-width">
             {% csrf_token %}
             {{comment_form.as_p}}
             {% if request.user.is_authenticated %}

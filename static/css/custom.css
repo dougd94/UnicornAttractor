@@ -4,6 +4,10 @@ a {
     /* no underline */
 }
 
+/*index*/
+
+
+
 .upvotebtn {
     background: none;
     border: 0;
@@ -54,4 +58,10 @@ a {
 
 .upvote:active {
     color: red;
+}
+
+
+/*forms*/
+.form-width {
+    width: 100%;
 }
