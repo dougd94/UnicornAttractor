@@ -22,17 +22,21 @@ def bug_detail(request, pk):
     bug.views += 1
     bug.save()
     comments = Comment.objects.filter(bug=bug).order_by('-created_date')
-    # if request.method == 'POST':
-    #     bug = Bug.objects.get(pk=pk)
-    #     comment_form = CommentForm(request.POST)
-    #     comment = request.POST.get('comment')
-    #     # created_date = request.POST.get('created_date')
-    #     if comment_form.is_valid():
-    #         comment_group = comment_form.save(commit=False)
-    #         comment_group.bug_id=pk
-    #         comment_group.author_id=request.user.id
-    #         comment_group=comment_form.save()
-    context =  { 'bug':bug, 'comments' : comments}
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST or None)
+        if comment_form.is_valid():
+            content=request.POST.get('content')
+            comment = Comment.objects.create(bug=bug, author=request.user, content=content)
+            comment.save()
+    else:
+        comment_form=CommentForm()
+            
+    context =  { 
+        'bug' : bug, 
+        'comments' : comments,
+        'comment_form' : comment_form,
+    }
+    
     return render(request, "bugdetail.html", context)
 
 @login_required

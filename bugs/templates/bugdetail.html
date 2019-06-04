@@ -21,6 +21,11 @@
     </div>
     <hr>
     <div class="row">
+        <form method="POST">
+            {% csrf_token %}
+            {{comment_form.as_p}}
+            <button class='btn btn-success' type='submit'>Comment</button>
+        </form>
         <div class="comments-section">
             <h3>{{comments.count}} Comment{{comments|pluralize}}:</h3>
             {% for comment in comments %}
