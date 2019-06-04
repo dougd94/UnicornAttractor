@@ -2,15 +2,17 @@
 <div class="container">
     <div class="row form-margin">
         <div class="text-center">
-            <h1>{{ bug.name }}</h1>
+            <h1>{{ bug.name|capfirst }}</h1>
             <p>
                 <div class="{{bug.status}}">Status: <strong>{{ bug.get_status_display }}</strong></div>
             </p>
-            <p><span class="">Author:</span> {{bug.author}}</p>
-             <p><span class="">Created on:</span> {{ bug.created_date }} </p>
+            <p>
+                <h5>Author: {{bug.author|capfirst}}</h5>
+            </p>
+            <p><span class="">Created on:</span> {{ bug.created_date }} </p>
             <a href="upvote/{{ bug.id }}"><i class="material-icons upvotedark" alt="upvote">arrow_upward</i><span class="badge">{{ bug.upvotes }}</span></a>
-            <span class=""><i class="material-icons" alt="views">remove_red_eye</i><span class="badge">{{ bug.views }}</span></span>  
-           
+            <span class=""><i class="material-icons" alt="views">remove_red_eye</i><span class="badge">{{ bug.views }}</span></span>
+
             <div class="row">
                 <h3>Bug Description:</h3>
                 <p>{{bug.description}}</p>
@@ -19,13 +21,17 @@
     </div>
     <hr>
     <div class="row">
-        <h3>Comments:</h3>
-        <p>
-            <form method="POST" action="{% url 'bug_detail' bug.id %}" enctype="multipart/form-data">
-                {% csrf_token %} {{ form.as_p }}
-                <button type="submit" class="btn btn-success">Add</button>
-            </form>
-        </p>
+        <div class="comments-section">
+            <h3>{{comments.count}} Comment{{comments|pluralize}}:</h3>
+            {% for comment in comments %}
+            <blockquote>
+                <p>{{comment.content}}</p>
+                <small>by <cite title="Source Title">{{comment.author|capfirst}}</cite> on {{comment.created_date}}</small>
+            </blockquote>
+            <hr>
+            {% endfor %}
+             
+        </div>
     </div>
 </div>
 {% endblock %}

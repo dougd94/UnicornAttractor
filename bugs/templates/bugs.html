@@ -9,7 +9,7 @@
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <div class="col-4">
-                    <h3 class="panel-title">{{ bug.name }}</h3>
+                    <h3 class="panel-title">{{ bug.name|capfirst }}</h3>
                 </div>
 
                 <div class="col-4 text-right">
@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="panel-body">
-                <h5>{{bug.author}}</h5>
+                <h5>{{bug.author|capfirst}}</h5>
                 <p>
                     <div class="{{bug.status}} text-center">Status:  <strong>{{ bug.get_status_display }}</strong></div>
                 </p>

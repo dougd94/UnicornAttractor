@@ -12,7 +12,6 @@ class Bug(models.Model):
     description = models.TextField()
     upvotes = models.DecimalField(max_digits=10, decimal_places=0, default='0')
     created_date = models.DateTimeField(auto_now_add=True)
-    # updated_date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User , default='')
     views = models.IntegerField(default=0)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='T')
@@ -30,15 +29,14 @@ class Votes(models.Model):
     def __str__(self):
         return str(self.voter)
        
-class Comments(models.Model):
+class Comment(models.Model):
     """
     Comments for under bug pages
     """
-    bug=models.ForeignKey(Bug)
+    bug = models.ForeignKey(Bug)
     author = models.ForeignKey(User)
-    comment = models.TextField(blank=False)
-    created_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
-    
+    content = models.TextField(max_length=300, blank=False)
+    created_date = models.DateTimeField(null=True, auto_now_add=True)
     
     def __str__(self):
-        return str(self.author)
+        return '{}-{}'.format(self.bug.name, str(self.author.username))

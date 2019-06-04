@@ -1,5 +1,5 @@
 from django import forms
-from .models import Bug, Comments
+from .models import Bug, Comment
 
 
 class BugForm(forms.ModelForm):
@@ -9,8 +9,7 @@ class BugForm(forms.ModelForm):
         fields = ('name', 'description')
         
 class CommentForm(forms.ModelForm):
-
     class Meta:
-        model = Comments
-        fields = ('comment', 'created_date')
+        model = Comment
+        fields = ('content',)
         

@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse, HttpR
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils import timezone
-from .models import Bug, Comments, Votes
+from .models import Bug, Comment, Votes
 from .forms import BugForm, CommentForm
 
 
@@ -21,17 +21,19 @@ def bug_detail(request, pk):
     bug = get_object_or_404(Bug, pk=pk)
     bug.views += 1
     bug.save()
-    if request.method == 'POST':
-        bug = Bug.objects.get(pk=pk)
-        comment_form = CommentForm(request.POST)
-        comment = request.POST.get('comment')
-        created_date = request.POST.get('created_date')
-        if comment_form.is_valid():
-            comment_group = comment_form.save(commit=False)
-            comment_group.bug_id=pk
-            comment_group.author_id=request.user.id
-            comment_group=comment_form.save()
-    return render(request, "bugdetail.html", {'bug': bug})
+    comments = Comment.objects.filter(bug=bug).order_by('-created_date')
+    # if request.method == 'POST':
+    #     bug = Bug.objects.get(pk=pk)
+    #     comment_form = CommentForm(request.POST)
+    #     comment = request.POST.get('comment')
+    #     # created_date = request.POST.get('created_date')
+    #     if comment_form.is_valid():
+    #         comment_group = comment_form.save(commit=False)
+    #         comment_group.bug_id=pk
+    #         comment_group.author_id=request.user.id
+    #         comment_group=comment_form.save()
+    context =  { 'bug':bug, 'comments' : comments}
+    return render(request, "bugdetail.html", context)
 
 @login_required
 def bug_upvote(request, bug_id):
@@ -48,7 +50,7 @@ def bug_upvote(request, bug_id):
         bugpk.save()
         return redirect(reverse('bugs'))
     else: 
-        messages.error(request, 'You have already upvoted this!', extra_tags="alert-danger")
+        messages.error(request, 'You have already upvoted that!', extra_tags="alert-danger")
         return redirect(reverse('bugs'))
 
         
