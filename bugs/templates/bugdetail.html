@@ -1,0 +1,46 @@
+{% extends "base.html" %} {% block content %}
+<div class="container">
+    <div class="row form-margin">
+        <div class="text-center">
+            <h1>{{ bug.name|capfirst }}</h1>
+            <p>
+                <div class="{{bug.status}}">Status: <strong>{{ bug.get_status_display }}</strong></div>
+            </p>
+            <p>
+                <h5>Author: {{bug.author|capfirst}}</h5>
+            </p>
+            <p><span class="">Created on:</span> {{ bug.created_date }} </p>
+            <a href="upvote/{{ bug.id }}"><i class="material-icons upvotedark" alt="upvote">arrow_upward</i><span class="badge">{{ bug.upvotes }}</span></a>
+            <span class=""><i class="material-icons" alt="views">remove_red_eye</i><span class="badge">{{ bug.views }}</span></span>
+
+            <div class="row">
+                <h3>Bug Description:</h3>
+                <p>{{bug.description}}</p>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <form method="POST" class="form-width">
+            {% csrf_token %}
+            {{comment_form.as_p}}
+            {% if request.user.is_authenticated %}
+            <button class='btn btn-success' type='submit'>Comment</button>
+            {% else %}
+            <button class='btn btn-success' type='submit' disabled>Comment</button>
+            {% endif %}
+        </form>
+        <div class="comments-section">
+            <h3>{{comments.count}} Comment{{comments|pluralize}}:</h3>
+            {% for comment in comments %}
+            <blockquote>
+                <p>{{comment.content}}</p>
+                <small>by <cite title="Source Title">{{comment.author|capfirst}}</cite> on {{comment.created_date}}</small>
+            </blockquote>
+            <hr>
+            {% endfor %}
+             
+        </div>
+    </div>
+</div>
+{% endblock %}
