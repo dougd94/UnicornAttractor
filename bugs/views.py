@@ -13,7 +13,7 @@ def all_bugs(request):
         ).order_by('-created_date')
     return render(request, "bugs.html", {"bugs": bugs})
     
-
+@login_required 
 def bug_detail(request, pk):
     """
     bug pages

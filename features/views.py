@@ -9,8 +9,7 @@ from .forms import FeatureForm, CommentForm
 
 
 def all_features(request):
-    features = Feature.objects.filter(created_date__lte=timezone.now()
-        ).order_by('-created_date')
+    features = Feature.objects.filter(paid=True)
     return render(request, "features.html", {"features": features})
     
 

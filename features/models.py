@@ -15,7 +15,7 @@ class Feature(models.Model):
     author = models.ForeignKey(User , default='')
     views = models.IntegerField(default=0)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='T')
-    price = models.DecimalField(max_digits=2, decimal_places=2, default='50.00')
+    price = models.DecimalField(max_digits=2, decimal_places=0, default='50')
     paid = models.BooleanField(default=False, blank=False)
     def __str__(self):
         return self.name

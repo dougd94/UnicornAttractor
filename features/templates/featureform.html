@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-
+{% if not message in messages %}<span class="form-margin"></span></span>{% endif %}
 {% block content %}
-    <h1 class="form-margin">Add Feature</h1>
+    <h1>Add Feature</h1>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}

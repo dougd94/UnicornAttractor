@@ -1,8 +1,9 @@
 {% extends "base.html" %} {% block content %}
 <div class="container">
-    <div class="row form-margin">
+    {% if not message in messages %}<span class="form-margin"></span></span>{% endif %}
+    <div class="row">
         <div class="text-center">
-            <h1>{{ feature.name|capfirst }}</h1>
+            <h1>Feature Request: {{ feature.name|capfirst }}</h1>
             <p>
                 <div class="{{feature.status}}">Status: <strong>{{ feature.get_status_display }}</strong></div>
             </p>
@@ -10,7 +11,8 @@
                 <h5>Author: {{feature.author|capfirst}}</h5>
             </p>
             <p><span class="">Created on:</span> {{ feature.created_date }} </p>
-            <a href="upvote/{{ feature.id }}"><i class="material-icons upvotedark" alt="upvote">arrow_upward</i><span class="badge">{{ feature.upvotes }}</span></a>
+            <!--<a href="upvote/{{ feature.id }}"><i class="material-icons upvotedark" alt="upvote">arrow_upward</i><span class="badge">{{ feature.upvotes }}</span>
+            <span class="badge">Price: €5.00</span></a>-->
             <span class=""><i class="material-icons" alt="views">remove_red_eye</i><span class="badge">{{ feature.views }}</span></span>
 
             <div class="row">
@@ -26,7 +28,7 @@
             {{comment_form.as_p}}
             {% if request.user.is_authenticated %}
             <button class='btn btn-success' type='submit'>Comment</button>
-            {% else %}
+            {% else  %}
             <button class='btn btn-success' type='submit' disabled>Comment</button>
             {% endif %}
         </form>

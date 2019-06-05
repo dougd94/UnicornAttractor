@@ -1,5 +1,6 @@
 {% extends 'base.html' %} {% block page_title %}Bugs Page{% endblock %} {% block page_heading %}Bugs{% endblock %} {% block content %}
-<h1 class="form-margin text-center">Bugs</h1>
+{% if not message in messages %}<span class="form-margin"></span></span>{% endif %}
+<h1 class="text-center">Bugs</h1>
 <h5 class="text-center">You can add bugs for free, to view and purchase features click <a href "#">Here</a></h5>
 {% if user.is_authenticated %}
 <div class="text-center"><a href="{% url 'new_bug' %}"><button type="button" class="btn btn-success">Add a Bug</button></a></div> {% endif %}
