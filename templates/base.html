@@ -32,7 +32,9 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{% url 'features' %}">Features</a></li>
                     <li><a href="{% url 'bugs' %}">Bugs</a></li>
-                    <li><a href="{% url 'view_cart' %}">Cart</a></li>
+                    <li><a href="{% url 'view_cart' %}"><i class="small material-icons">shopping_cart</i>Cart{% if feature_count > 0 %}
+                            <label class="badge badge-warning">{{ feature_count }}</label>
+                            {% endif %}</a></li>
                     {% if user.is_authenticated %}
                     <li><a href="{% url 'profile' %}">Profile</a></li>
                     <li><a href="{% url 'logout' %}">Log Out</a></li>
