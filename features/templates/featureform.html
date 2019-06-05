@@ -5,6 +5,7 @@
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-success">Add</button>
+        <p>The cost for a new feature is <strong>€50</strong></p>
+        <button type="submit" class="btn btn-success">Add to cart</button>
     </form>
 {% endblock %}
