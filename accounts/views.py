@@ -3,6 +3,8 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from accounts.forms import UserLoginForm, UserRegistrationForm
+from bugs.models import Bug
+from features.models import Feature
 
 
 def index(request):
@@ -65,4 +67,12 @@ def registration(request):
 def user_profile(request):
     """The user's profile page"""
     user = User.objects.get(email=request.user.email)
-    return render(request, 'profile.html', {"profile": user})
+    bugs = Bug.objects.filter(author=request.user.id)
+    features = Feature.objects.filter(author=request.user.id)
+    context =  { 
+        'bugs' : bugs, 
+        'features' : features,
+        'profile' : user,
+    }
+    
+    return render(request, 'profile.html', context)
