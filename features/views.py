@@ -47,12 +47,23 @@ def create_or_edit_feature(request, pk=None):
     if request.method == "POST":
         form = FeatureForm(request.POST,request.FILES, instance=feature)
         if form.is_valid():
-            feature_group= form.save(commit=False)
-            #get the author
-            featureauthor_id = request.user.id
-            feature_group.author_id = featureauthor_id
-            feature_group = form.save()
-            return redirect(feature_detail, feature_group.pk)
+            # feature_group= form.save(commit=False)
+            # id = feature.pk
+            # #get the author
+            # featureauthor_id = request.user.id
+            # feature_group.author_id = featureauthor_id
+            # feature_group = form.save()
+            feature=form.save(commit=False)
+            feature.author_id = request.user.id
+            feature.price = 50
+            feature.save()
+            cart = request.session.get('cart', {})
+            id = feature.pk
+            cart[id] = cart.get(id, 1)
+            request.session['cart'] = cart
+        
+            return redirect(feature_detail, feature.pk)
+            # return redirect(feature_detail, feature_group.pk)
     else:
         form = FeatureForm(instance=feature)
     return render(request, 'featureform.html', {'form': form})

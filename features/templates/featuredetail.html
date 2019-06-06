@@ -4,6 +4,13 @@
     <div class="row">
         <div class="text-center">
             <h1>Feature Request: {{ feature.name|capfirst }}</h1>
+            {% if not feature == 'paid' %}
+            <label for="add">You must pay before it is listed</label>
+                <form id="add" method="post" action="{% url 'add_to_cart' feature.id %}">
+                    {%csrf_token%}
+                    <button class="btn btn-success">Add to Cart</button>
+                </form>
+            {% endif %}
             <p>
                 <div class="{{feature.status}}">Status: <strong>{{ feature.get_status_display }}</strong></div>
             </p>
@@ -24,13 +31,9 @@
     <hr>
     <div class="row">
         <form method="POST" class="form-width">
-            {% csrf_token %}
-            {{comment_form.as_p}}
-            {% if request.user.is_authenticated %}
-            <button class='btn btn-success' type='submit'>Comment</button>
-            {% else  %}
-            <button class='btn btn-success' type='submit' disabled>Comment</button>
-            {% endif %}
+            {% csrf_token %} {{comment_form.as_p}} {% if request.user.is_authenticated %}
+            <button class='btn btn-success' type='submit'>Comment</button> {% else %}
+            <button class='btn btn-success' type='submit' disabled>Comment</button> {% endif %}
         </form>
         <div class="comments-section">
             <h3>{{comments.count}} Comment{{comments|pluralize}}:</h3>
@@ -39,9 +42,8 @@
                 <p>{{comment.content}}</p>
                 <small>by <cite title="Source Title">{{comment.author|capfirst}}</cite> on {{comment.created_date}}</small>
             </blockquote>
-            <hr>
-            {% endfor %}
-             
+            <hr> {% endfor %}
+
         </div>
     </div>
 </div>

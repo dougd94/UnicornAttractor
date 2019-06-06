@@ -15,8 +15,9 @@ class Feature(models.Model):
     author = models.ForeignKey(User , default='')
     views = models.IntegerField(default=0)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='T')
-    price = models.DecimalField(max_digits=2, decimal_places=0, default='50')
+    # price = models.DecimalField(max_digits=2, decimal_places=0, default='50')
     paid = models.BooleanField(default=False, blank=False)
+    quantity = models.DecimalField(max_digits=1, decimal_places=0, default='1')
     def __str__(self):
         return self.name
         
@@ -28,6 +29,7 @@ class Commentf(models.Model):
     author = models.ForeignKey(User)
     content = models.TextField(max_length=300, blank=False)
     created_date = models.DateTimeField(null=True, auto_now_add=True)
-    
     def __str__(self):
         return '{}-{}'.format(self.feature.name, str(self.author.username))
+    
+

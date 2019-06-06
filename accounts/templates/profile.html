@@ -1,3 +1,14 @@
 {% extends 'base.html' %} {% block page_title %}{{ user }}'s Profile{% endblock %} {% block page_heading %}{{ user }}'s Profile{% endblock %} {% block content %}
-<p>{{ profile.email }}</p>
+<h1 class='text-center'>User: {{ profile.username|capfirst }}</h1>
+<!--<ul>-->
+<!--    <li class='active'><span>My Features</span></li>-->
+<!--    <li class=''><span>My Bugs</span></li>-->
+ 
+<!--</ul>-->
+{% for feature in features %}
+{{feature.name}}
+{% endfor %}
+{% for bug in bugs %}
+{{bug.name}}
+{% endfor %}
 {% endblock %}

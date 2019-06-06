@@ -6,6 +6,7 @@
         {% csrf_token %}
         {{ form.as_p }}
         <p>The cost for a new feature is <strong>€50</strong></p>
-        <button type="submit" class="btn btn-success">Add to cart</button>
+        <button type="submit" class="btn btn-success">Create Feature</button>
+        <label>You must pay for the feature before it shows up in the feature page. </label>
     </form>
 {% endblock %}
