@@ -20,7 +20,7 @@ def add_to_cart(request, id):
         request.session['cart'] = cart
 
     # request.session['cart'] = cart
-    return redirect(reverse('index'))
+        return redirect(reverse('index'))
 
 
 def adjust_cart(request, id):
