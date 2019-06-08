@@ -8,7 +8,7 @@ pycurl==7.19.3
 pygobject==3.27.0
 python-apt===0.0.0
 pytz==2019.1
-requests==2.22.0
+requests==2.21.0
 six==1.5.2
 stripe==2.29.4
 unattended-upgrades==0.1
