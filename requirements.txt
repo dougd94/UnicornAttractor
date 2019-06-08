@@ -11,6 +11,6 @@ pytz==2019.1
 requests==2.21.0
 six==1.5.2
 stripe==2.29.4
-
+unattended-upgrades==0.1
 urllib3==1.25.3
 wheel==0.24.0
