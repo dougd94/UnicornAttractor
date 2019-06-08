@@ -4,7 +4,7 @@
     <div class="row">
         <div class="text-center">
             <h1>Feature Request: {{ feature.name|capfirst }}</h1>
-            {% if paid == False %}
+            {% if feature.paid == False %}
             <label for="add">You must pay before it is listed</label>
                 <form id="add" method="POST" action="{% url 'add_to_cart' feature.id %}">
                     {%csrf_token%}

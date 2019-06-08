@@ -5,10 +5,21 @@
 <!--    <li class=''><span>My Bugs</span></li>-->
  
 <!--</ul>-->
+<hr>
 {% for feature in features %}
-{{feature.name}}
+<div class="text-center">
+<h2>Your Features:</h2>
+<h3>Id: [{{feature.id}}]
+Name: [{{feature.name}}]
+Status: [{{feature.get_status_display}}]</h3>
+<hr>
+</div>
 {% endfor %}
+<hr>
+<div class="text-center">
 {% for bug in bugs %}
-<h5>{{bug.name}}</h5>
+<h2>Your Bugs:</h2>
+<h3>{{bug.id}} {{bug.name}} </h3>
+</div>
 {% endfor %}
 {% endblock %}
