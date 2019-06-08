@@ -11,7 +11,7 @@
 {% for feature in features %}
 <div class="col-sm-12 col-md-4 text-center">
     <div class="panel panel-primary">
-        <h3>Id: {{feature.id}}</h3>
+        <h3>Feature Id: {{feature.id}}</h3>
         <h3><a href="{% url 'feature_detail' feature.id %}">Name: {{feature.name}}</a></h3>
         <div class="panel-body">
             <h3><span class="{{feature.status}}"> Status: {{feature.get_status_display}}</span></h3>
@@ -32,7 +32,7 @@
     {% for bug in bugs %}
     <div class="col-sm-12 col-md-4 text-center">
         <div class="panel panel-primary">
-            <h3>Id: {{bug.id}}</h3>
+            <h3>Bug Id: {{bug.id}}</h3>
             <h3><a href="{% url 'bug_detail' bug.id %}">Name: {{bug.name}}</a></h3>
             <div class="panel-body">
                 <h3><span class="{{bug.status}}"> Status: {{bug.get_status_display}}</span></h3>
