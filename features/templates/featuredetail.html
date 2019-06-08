@@ -6,10 +6,10 @@
             <h1>Feature Request: {{ feature.name|capfirst }}</h1>
             {% if feature.paid == False %}
             <label for="add">You must pay before it is listed</label>
-                <form id="add" method="POST" action="{% url 'add_to_cart' feature.id %}">
-                    {%csrf_token%}
-                    <button class="btn btn-success">Add to Cart</button>
-                </form>
+            <form id="add" method="POST" action="{% url 'add_to_cart' feature.id %}">
+                {%csrf_token%}
+                <button class="btn btn-success">Add to Cart</button>
+            </form>
             {% endif %}
             <p>
                 <div class="{{feature.status}}">Status: <strong>{{ feature.get_status_display }}</strong></div>
@@ -18,8 +18,9 @@
                 <h5>Author: {{feature.author|capfirst}}</h5>
             </p>
             <p><span class="">Created on:</span> {{ feature.created_date }} </p>
-            <!--<a href="upvote/{{ feature.id }}"><i class="material-icons upvotedark" alt="upvote">arrow_upward</i><span class="badge">{{ feature.upvotes }}</span>
-            <span class="badge">Price: €5.00</span></a>-->
+            <a href="{% url 'feature_upvote' feature.id %}"><span class="badge">Upvote Price: €5.00</span>
+            <i class="material-icons upvotedark" alt="upvote">arrow_upward</i>
+            <span class="badge">{{ feature.upvotes }}</span></a>
             <span class=""><i class="material-icons" alt="views">remove_red_eye</i><span class="badge">{{ feature.views }}</span></span>
 
             <div class="row">

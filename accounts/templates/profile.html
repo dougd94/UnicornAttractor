@@ -3,23 +3,42 @@
 <!--<ul>-->
 <!--    <li class='active'><span>My Features</span></li>-->
 <!--    <li class=''><span>My Bugs</span></li>-->
- 
+
 <!--</ul>-->
 <hr>
+
+
+<div class="text-center">
+    <h2>Your Features:</h2>
+    <h4>Your unpaid features will not be shown on the features page until <strong>paid!</strong></h4>
+</div>
 {% for feature in features %}
-<div class="text-center">
-<h2>Your Features:</h2>
-<h3>Id: [{{feature.id}}]
-Name: [{{feature.name}}]
-Status: [{{feature.get_status_display}}]</h3>
-<hr>
+<div class="col-sm-12 col-md-4 text-center">
+    <h3>Id: {{feature.id}}</h3>
+    <h3><a href="{% url 'feature_detail' feature.id %}">Name: {{feature.name}}</a></h3>
+    <h3><span class="{{feature.status}}"> Status: {{feature.get_status_display}}</span></h3>
+    {% if feature.paid == False %}<label for="notpaid">Not Paid</label>
+    <a id="notpaid" href="{% url 'view_cart' %}" class="not-paid">
+    <br>
+    <button class="btn btn-success">View Cart</button></a>
+    {% endif%}
+    {% if feature.paid == True %}<label for="paid">Paid</label>
+    <br>
+    <button class="btn btn-success" disabled>View Cart</button></a>
+     {% endif %}
+    
+    <hr>
 </div>
 {% endfor %}
-<hr>
+
 <div class="text-center">
-{% for bug in bugs %}
-<h2>Your Bugs:</h2>
-<h3>{{bug.id}} {{bug.name}} </h3>
+
+    <h2>Your Bugs:</h2>
+    {% for bug in bugs %}
+    <div class="col-sm-12 col-md-4 text-center">
+        <h3>Id: {{bug.id}}</h3>
+        <h3><a href="{% url 'bug_detail' bug.id %}">Name: {{bug.name}}</a></h3>
+        <h3><span class="{{bug.status}}"> Status: {{bug.get_status_display}}</span></h3>
+    </div>
 </div>
-{% endfor %}
-{% endblock %}
+{% endfor %} {% endblock %}

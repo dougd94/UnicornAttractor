@@ -32,4 +32,9 @@ class Commentf(models.Model):
     def __str__(self):
         return '{}-{}'.format(self.feature.name, str(self.author.username))
     
-
+class Votesf(models.Model):
+    ''' upvote'''
+    voterf = models.ForeignKey(User)
+    featurepk = models.ForeignKey(Feature)
+    class Meta:
+        unique_together = ("voterf", "featurepk")

@@ -1,10 +1,9 @@
-from django.shortcuts import render, get_object_or_404, redirect, reverse, HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils import timezone
-from .models import Feature, Commentf
+from .models import Feature, Commentf, Votesf
 from .forms import FeatureForm, CommentForm
-# from .forms import BugForm, CommentForm
 
 
 
@@ -45,7 +44,7 @@ def create_or_edit_feature(request, pk=None):
     """
     feature = get_object_or_404(Feature, pk=pk) if pk else None
     if request.method == "POST":
-        form = FeatureForm(request.POST,request.FILES, instance=feature)
+        form = FeatureForm(request.POST)
         if form.is_valid():
             # feature_group= form.save(commit=False)
             # id = feature.pk
@@ -57,6 +56,8 @@ def create_or_edit_feature(request, pk=None):
             feature.author_id = request.user.id
             feature.price = 50
             feature.save()
+            
+            
             cart = request.session.get('cart', {})
             id = feature.pk
             cart[id] = cart.get(id, 1)
@@ -68,20 +69,30 @@ def create_or_edit_feature(request, pk=None):
         form = FeatureForm(instance=feature)
     return render(request, 'featureform.html', {'form': form})
 
-# @login_required
-# def bug_upvote(request, bug_id):
-#     """
-#     bug upvote
-#     """
-#     voter=request.user.id
-#     bugpk = Bug.objects.get(pk=bug_id)
-#     check = Votes.objects.filter(bugpk=bugpk, voter=voter)
-#     if not check:
-#         check = Votes(bugpk = bugpk, voter_id = request.user.id)
-#         check.save()
-#         bugpk.upvotes += 1
-#         bugpk.save()
-#         return redirect(reverse('bugs'))
-#     else: 
-#         messages.error(request, 'You have already upvoted that!', extra_tags="alert-danger")
-#         return redirect(reverse('bugs'))
+@login_required
+def feature_upvote(request, feature_id):
+    """
+    feature upvote
+    """
+    voterf=request.user.id
+    featurepk = Feature.objects.get(pk=feature_id)
+    check = Votesf.objects.filter(featurepk=featurepk, voterf=voterf)
+    if not check:
+        featurepk.price = 5
+        cart = request.session.get('cart', {})
+        id = featurepk.pk
+        cart[id] = cart.get(id, 1)
+        request.session['cart'] = cart
+        # votepaid = {"paid": False}
+        messages.success(request, 'Upvote added to cart', extra_tags="alert-success")
+        return redirect(feature_detail, featurepk.pk)
+        # if votepaid is True:
+        #     check = Votesf(featurepk = featurepk, voter_id = request.user.id)
+        #     check.save()
+        #     featurepk.upvotes += 1
+        #     featurepk.save()
+        
+        # return redirect(reverse('features'))
+    else: 
+        messages.error(request, 'You have already upvoted that!', extra_tags="alert-danger")
+        return redirect(reverse('features'))
