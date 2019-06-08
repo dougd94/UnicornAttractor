@@ -20,10 +20,10 @@
         <h3><a href="{% url 'feature_detail' feature.id %}">Name: {{feature.name}}</a></h3>
         <div class="panel-body">
             <h3><span class="{{feature.status}}"> Status: {{feature.get_status_display}}</span></h3>
-            {% if feature.paid == False %}<label for="notpaid">Not Paid</label>
+            {% if feature.paid == False %}<label for="notpaid">Status: Not Paid</label>
             <a id="notpaid" href="{% url 'view_cart' %}" class="not-paid">
     <br>
-    <button class="btn btn-success">View Cart</button></a> {% endif%} {% if feature.paid == True %}<label for="paid">Paid</label>
+    <button class="btn btn-success">View Cart</button></a> {% endif%} {% if feature.paid == True %}<label for="paid">Status: Paid</label>
             <br>
             <button class="btn btn-success" disabled>View Cart</button></a>
             {% endif %}
