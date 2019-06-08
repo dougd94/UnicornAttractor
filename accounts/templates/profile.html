@@ -1,10 +1,5 @@
 {% extends 'base.html' %} {% block page_title %}{{ user }}'s Profile{% endblock %} {% block page_heading %}{{ user }}'s Profile{% endblock %} {% block content %}
 <h1 class='text-center'>User: {{ profile.username|capfirst }}</h1>
-<!--<ul>-->
-<!--    <li class='active'><span>My Features</span></li>-->
-<!--    <li class=''><span>My Bugs</span></li>-->
-
-<!--</ul>-->
 <hr>
 
 
@@ -29,12 +24,10 @@
             {% endif %}
         </div>
     </div>
-    <hr>
 </div>
 {% endfor %}
 
 <div class="text-center">
-
     <h2>Your Bugs:</h2>
     {% for bug in bugs %}
     <div class="col-sm-12 col-md-4 text-center">
