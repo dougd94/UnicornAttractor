@@ -6,7 +6,7 @@ html5lib==0.999
 idna==2.8
 pycurl==7.19.3
 pygobject==3.27.0
-python-apt===0.7.8
+python-apt===0.0.0
 pytz==2019.1
 requests==2.22.0
 six==1.5.2
