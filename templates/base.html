@@ -30,6 +30,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{% url 'index' %}">Home</a></li>
                     <li><a href="{% url 'features' %}">Features</a></li>
                     <li><a href="{% url 'bugs' %}">Bugs</a></li>
                     <li><a href="{% url 'view_cart' %}"><i class="small material-icons">shopping_cart</i>Cart{% if feature_count > 0 %}
