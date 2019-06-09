@@ -12,8 +12,9 @@
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">
+                <a href="{% url 'feature_detail' feature.id %}">
                 Feature Id: {{feature.id}} |
-                <a href="{% url 'feature_detail' feature.id %}">Name: {{feature.name}}</a>
+                Name: {{feature.name}}</a>
             </h3>
         </div>
         <div class="panel-body">
@@ -39,9 +40,11 @@
     <div class="col-sm-12 col-md-4 text-center">
         <div class="panel panel-primary">
             <div class="panel-heading">
-            <h3 class="panel-title">Bug Id: {{bug.id}} |
-            <a href="{% url 'bug_detail' bug.id %}">Name: {{bug.name}}</a>
-            </h3>
+                <h3 class="panel-title">
+                    <a href="{% url 'bug_detail' bug.id %}">
+                    Bug Id: {{bug.id}} |
+                    Name: {{bug.name}}</a>
+                </h3>
             </div>
             <div class="panel-body">
                 <h3><span class="{{bug.status}}"> Status: {{bug.get_status_display}}</span></h3>
