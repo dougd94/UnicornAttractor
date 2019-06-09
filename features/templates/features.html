@@ -2,7 +2,7 @@
 {% if not message in messages %}<span class="form-margin"></span></span>{% endif %}
 <h1 class="text-center">Features</h1>
 <h5 class="text-center">Features cost <strong>€50</strong> to create and <strong>€5</strong> to upvote, but bugs are <strong>free</strong> - add a bug
-<a href "{% url 'bugs' %}">Here</a></h5>
+<a href="{% url 'bugs' %}">Here</a></h5>
 {% if user.is_authenticated %}
 <div class="text-center"><a href="{% url 'new_feature' %}"><button type="button" class="btn btn-success">Add a Feature</button></a></div> {% endif %}
 <h4>{{features.count}} Feature{{features|pluralize}} found:</h4>
