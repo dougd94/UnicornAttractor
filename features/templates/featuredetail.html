@@ -18,9 +18,11 @@
                 <h5>Author: {{feature.author|capfirst}}</h5>
             </p>
             <p><span class="">Created on:</span> {{ feature.created_date }} </p>
+            {% if feature.paid == True %}
             <a href="{% url 'feature_upvote' feature.id %}"><span class="badge">Upvote Price: €5.00</span>
             <i class="material-icons upvotedark" alt="upvote">arrow_upward</i>
             <span class="badge">{{ feature.upvotes }}</span></a>
+            {% endif %}
             <span class=""><i class="material-icons" alt="views">remove_red_eye</i><span class="badge">{{ feature.views }}</span></span>
 
             <div class="row">
