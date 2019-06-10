@@ -75,17 +75,18 @@ def feature_upvote(request, feature_id):
     feature upvote
     """
     voterf=request.user.id
-    featurepk = Feature.objects.get(pk=feature_id)
-    check = Votesf.objects.filter(featurepk=featurepk, voterf=voterf)
-    if not check:
-        featurepk.price = 5
-        cart = request.session.get('cart', {})
-        id = featurepk.pk
-        cart[id] = cart.get(id, 1)
-        request.session['cart'] = cart
-        # votepaid = {"paid": False}
-        messages.success(request, 'Upvote added to cart', extra_tags="alert-success")
-        return redirect(feature_detail, featurepk.pk)
+    feature = Feature.objects.get(pk=feature_id)
+    check = Votesf.objects.filter(feature=feature, voterf=voterf)
+    if feature.paid == True:
+        if not check:
+            feature.price = 5
+            cart = request.session.get('cart', {})
+            id = feature.pk
+            cart[id] = cart.get(id, 1)
+            request.session['cart'] = cart
+            # votepaid = {"paid": False}
+            messages.success(request, 'Upvote added to cart', extra_tags="alert-success")
+            return redirect(feature_detail, feature.pk)
         # if votepaid is True:
         #     check = Votesf(featurepk = featurepk, voter_id = request.user.id)
         #     check.save()
@@ -93,6 +94,9 @@ def feature_upvote(request, feature_id):
         #     featurepk.save()
         
         # return redirect(reverse('features'))
+        else: 
+            messages.error(request, 'You have already upvoted that!', extra_tags="alert-danger")
+            return redirect(reverse('features'))
     else: 
-        messages.error(request, 'You have already upvoted that!', extra_tags="alert-danger")
-        return redirect(reverse('features'))
+        messages.error(request, 'You can not upvote before paying!', extra_tags='alert-danger')
+        return redirect(feature_detail, feature.pk)

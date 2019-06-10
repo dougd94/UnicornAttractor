@@ -43,12 +43,14 @@ def checkout(request):
                     card=payment_form.cleaned_data['stripe_id']
                 )
             except stripe.error.CardError:
-                messages.error(request, "Your card was declined!", extra_tag='alert_danger')
+                messages.error(request, "Your card was declined!", extra_tags='alert_danger')
             
             if customer.paid:
                 for id, quantity in cart.items():
                     if feature.paid == False:
                         feature.paid = True
+                    if feature.paid == True:
+                        feature.upvotes += 1
                 feature.save()
                 messages.success(request, "You have successfully paid", extra_tags='alert-success')
                 request.session['cart'] = {}

@@ -36,6 +36,6 @@ class Commentf(models.Model):
 class Votesf(models.Model):
     ''' upvote'''
     voterf = models.ForeignKey(User)
-    featurepk = models.ForeignKey(Feature)
+    feature = models.ForeignKey(Feature)
     class Meta:
-        unique_together = ("voterf", "featurepk")
+        unique_together = ("voterf", "feature")
