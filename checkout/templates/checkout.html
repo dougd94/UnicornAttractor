@@ -8,10 +8,9 @@
     Stripe.publishableKey = '{{ publishable }}';
     //]]>
 </script>
-<script type="text/javascript" src="{% static './js/stripe.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
 {% endblock %} 
 {% block content %}
-
 <div class="row row-flex">
     {% for item in cart_items %}
     <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-4 display panel panel-default">
@@ -37,7 +36,7 @@
     </div>
 
     <div class="form-group col-md-6">
-        {{ order_form.as_p}}
+        {{ order_form.as_p }}
     </div>
 
     <div class="form-group col-md-6">

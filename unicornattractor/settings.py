@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'cart',
     'checkout',
     'stripe',
-    'django_forms_bootstrap'
+    'django_forms_bootstrap',
 ]
 
 MIDDLEWARE = [
