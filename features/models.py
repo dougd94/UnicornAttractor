@@ -14,6 +14,7 @@ class Feature(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User , default='')
     views = models.IntegerField(default=0)
+    price = models.IntegerField(default=50)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='T')
     # price = models.DecimalField(max_digits=2, decimal_places=0, default='50')
     paid = models.BooleanField(default=False, blank=False)

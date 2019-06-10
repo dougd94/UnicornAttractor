@@ -22,8 +22,15 @@ def add_to_cart(request, id):
         cart = request.session.get('cart', {})
         cart[id] = 1
         request.session['cart'] = cart
+        print(cart)
         return redirect(reverse('view_cart'))
     # request.session['cart'] = cart
+    # if request.method == 'POST':
+    #     cart = request.session.get('cart', {})
+    #     cart[id] = cart.get(id)
+    
+    #     request.session['cart'] = cart
+    #     return redirect(reverse('view_cart'))
     else:
         messages.error(request, 'Something went wrong!', extra_tags="alert-danger")
         return redirect(reverse('index'))
@@ -34,13 +41,9 @@ def remove_cart(request, id):
     Adjust the quantity of the specified feature to the specified
     amount
     """
-    id = request.POST['feature_id']
-    
+    id = request.POST[id]
     cart = request.session.get('cart', {})
-    
-    
     cart.pop(id)
-        
     request.session['cart'] = cart
     
     return redirect(reverse('view_cart'))
