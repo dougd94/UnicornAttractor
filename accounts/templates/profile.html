@@ -2,7 +2,7 @@
 <h1 class='text-center'>User: {{ profile.username|capfirst }}</h1>
 <hr>
 
-
+<div class="row">
 <div class="text-center">
     <h2>Your Features:</h2>
     <h4>Your unpaid features will not be shown on the features page until <strong>paid!</strong></h4>
@@ -33,7 +33,8 @@
     </div>
 </div>
 {% endfor %}
-
+</div>
+<div class="row">
 <div class="text-center">
     <h2>Your Bugs:</h2>
     {% for bug in bugs %}
@@ -52,4 +53,6 @@
         </div>
     </div>
 </div>
-{% endfor %} {% endblock %}
+{% endfor %}
+</div>
+{% endblock %}

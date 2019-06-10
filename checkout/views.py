@@ -43,17 +43,21 @@ def checkout(request):
                     card=payment_form.cleaned_data['stripe_id']
                 )
             except stripe.error.CardError:
-                messages.error(request, "Your card was declined!")
+                messages.error(request, "Your card was declined!", extra_tag='alert_danger')
             
             if customer.paid:
-                messages.error(request, "You have successfully paid")
+                for id, quantity in cart.items():
+                    if feature.paid == False:
+                        feature.paid = True
+                feature.save()
+                messages.success(request, "You have successfully paid", extra_tags='alert-success')
                 request.session['cart'] = {}
                 return redirect(reverse('features'))
             else:
-                messages.error(request, "Unable to take payment")
+                messages.error(request, "Unable to take payment", extra_tags="alert-danger")
         else:
             print(payment_form.errors)
-            messages.error(request, "We were unable to take a payment with that card!")
+            messages.error(request, "We were unable to take a payment with that card!", extra_tags="alert-danger")
     else:
         payment_form = MakePaymentForm()
         order_form = OrderForm()
