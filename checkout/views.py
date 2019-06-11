@@ -5,7 +5,7 @@ from .forms import MakePaymentForm, OrderForm
 from .models import OrderLineItem
 from django.conf import settings
 from django.utils import timezone
-from features.models import Feature
+from features.models import Feature, Votesf
 import stripe
 
 # Create your views here.
@@ -50,7 +50,7 @@ def checkout(request):
                     if feature.paid == False:
                         feature.paid = True
                     if feature.paid == True:
-                        feature.upvotes += 1
+                            feature.upvotes += 1
                 feature.save()
                 messages.success(request, "You have successfully paid", extra_tags='alert-success')
                 request.session['cart'] = {}

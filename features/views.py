@@ -74,19 +74,14 @@ def feature_upvote(request, feature_id):
     check = Votesf.objects.filter(feature=feature, voterf=voterf)
     # if its paid it must be an upvote so price changes to 5.00
     if feature.paid == True:
-        if not check:
-            feature.price = 5.00
-            feature.save()
-            cart = request.session.get('cart', {})
-            id = feature.pk
-            cart[id] = cart.get(id, 1)
-            request.session['cart'] = cart
-            messages.success(request, 'Upvote added to cart', extra_tags="alert-success")
-            return redirect(feature_detail, feature.pk)
-        # can only upvote once
-        else: 
-            messages.error(request, 'You have already upvoted that!', extra_tags="alert-danger")
-            return redirect(reverse('features'))
+        feature.price = 5.00
+        feature.save()
+        cart = request.session.get('cart', {})
+        id = feature.pk
+        cart[id] = cart.get(id, 1)
+        request.session['cart'] = cart
+        messages.success(request, 'Upvote added to cart', extra_tags="alert-success")
+        return redirect(feature_detail, feature.pk)
     # this just catches people from upvoting before its payed for, although the upvote is hidden in this case
     else: 
         messages.error(request, 'You can not upvote before paying!', extra_tags='alert-danger')

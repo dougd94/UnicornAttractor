@@ -21,6 +21,8 @@
             <p><span class="">Created on:</span> {{ feature.created_date }} </p>
             <!--it will not show upvote unless paid-->
             {% if feature.paid == True %}
+            (you can upvote features as many times as you wish)
+            <br>
             <a href="{% url 'feature_upvote' feature.id %}"><span class="badge">Upvote Price: €5.00</span>
             <i class="material-icons upvotedark" alt="upvote">arrow_upward</i>
             <span class="badge">{{ feature.upvotes }}</span></a>

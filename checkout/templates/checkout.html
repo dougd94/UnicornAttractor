@@ -1,12 +1,11 @@
 {% extends "base.html" %} {% load static from staticfiles %} {% load bootstrap_tags %} {% block head_js %}
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-<script type="text/javascript" src="">
-// stripe javascript
+<script>
     //<![CDATA[
     Stripe.publishableKey = '{{ publishable }}';
     //]]>
 </script>
-<script type="text/javascript" src="{% static '/static/js/stripe.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
 {% endblock %} {% block content %}
 <div class="row row-flex">
     {% for item in cart_items %}
