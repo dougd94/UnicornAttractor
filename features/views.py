@@ -79,7 +79,8 @@ def feature_upvote(request, feature_id):
     check = Votesf.objects.filter(feature=feature, voterf=voterf)
     if feature.paid == True:
         if not check:
-            feature.price = 5
+            feature.price = 5.00
+            feature.save()
             cart = request.session.get('cart', {})
             id = feature.pk
             cart[id] = cart.get(id, 1)
