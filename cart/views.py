@@ -13,24 +13,14 @@ def view_cart(request):
 @login_required
 def add_to_cart(request, id):
     """Add a quantity of the specified feature to the cart"""
-    # quantity = Feature.quantity
-    # #int(request.POST.get('quantity'))
-
-    # cart = request.session.get('cart', {})
-    # cart[id] = cart.get(id)
+    # cart
     if request.method == 'POST':
         cart = request.session.get('cart', {})
         cart[id] = 1
         request.session['cart'] = cart
         print(cart)
         return redirect(reverse('view_cart'))
-    # request.session['cart'] = cart
-    # if request.method == 'POST':
-    #     cart = request.session.get('cart', {})
-    #     cart[id] = cart.get(id)
-    
-    #     request.session['cart'] = cart
-    #     return redirect(reverse('view_cart'))
+   
     else:
         messages.error(request, 'Something went wrong!', extra_tags="alert-danger")
         return redirect(reverse('index'))
@@ -42,6 +32,7 @@ def remove_cart(request, id):
     amount
     """
     cart = request.session.get('cart', {})
+    # pops feature from cart on click
     cart.pop(id)
     request.session['cart'] = cart
     

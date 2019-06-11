@@ -19,6 +19,7 @@ def feature_detail(request, pk):
     feature = get_object_or_404(Feature, pk=pk)
     feature.views += 1
     feature.save()
+    # filter comments commentf = comment for features
     comments = Commentf.objects.filter(feature=feature).order_by('-created_date')
     if request.method == 'POST':
         comment_form = CommentForm(request.POST or None)
@@ -45,13 +46,8 @@ def create_or_edit_feature(request, pk=None):
     feature = get_object_or_404(Feature, pk=pk) if pk else None
     if request.method == "POST":
         form = FeatureForm(request.POST)
+        # if its valid continue with this
         if form.is_valid():
-            # feature_group= form.save(commit=False)
-            # id = feature.pk
-            # #get the author
-            # featureauthor_id = request.user.id
-            # feature_group.author_id = featureauthor_id
-            # feature_group = form.save()
             feature=form.save(commit=False)
             feature.author_id = request.user.id
             feature.price = 50
@@ -64,7 +60,6 @@ def create_or_edit_feature(request, pk=None):
             request.session['cart'] = cart
         
             return redirect(feature_detail, feature.pk)
-            # return redirect(feature_detail, feature_group.pk)
     else:
         form = FeatureForm(instance=feature)
     return render(request, 'featureform.html', {'form': form})
@@ -77,6 +72,7 @@ def feature_upvote(request, feature_id):
     voterf=request.user.id
     feature = Feature.objects.get(pk=feature_id)
     check = Votesf.objects.filter(feature=feature, voterf=voterf)
+    # if its paid it must be an upvote so price changes to 5.00
     if feature.paid == True:
         if not check:
             feature.price = 5.00
@@ -85,19 +81,13 @@ def feature_upvote(request, feature_id):
             id = feature.pk
             cart[id] = cart.get(id, 1)
             request.session['cart'] = cart
-            # votepaid = {"paid": False}
             messages.success(request, 'Upvote added to cart', extra_tags="alert-success")
             return redirect(feature_detail, feature.pk)
-        # if votepaid is True:
-        #     check = Votesf(featurepk = featurepk, voter_id = request.user.id)
-        #     check.save()
-        #     featurepk.upvotes += 1
-        #     featurepk.save()
-        
-        # return redirect(reverse('features'))
+        # can only upvote once
         else: 
             messages.error(request, 'You have already upvoted that!', extra_tags="alert-danger")
             return redirect(reverse('features'))
+    # this just catches people from upvoting before its payed for, although the upvote is hidden in this case
     else: 
         messages.error(request, 'You can not upvote before paying!', extra_tags='alert-danger')
         return redirect(feature_detail, feature.pk)

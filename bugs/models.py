@@ -24,6 +24,7 @@ class Votes(models.Model):
     voter = models.ForeignKey(User)
     bugpk = models.ForeignKey(Bug)
     class Meta:
+        # checks voter and bug against each other to see if upvote allowed
         unique_together = ("voter", "bugpk")
      
     def __str__(self):
