@@ -12,6 +12,15 @@ class TestFeatureModel(TestCase):
         feature.save()
         self.assertEqual(feature.name, "Create a Test")
         self.assertFalse(feature.paid)
+    
+    def test_paid_can_be_true(self):
+        user=User(username="test", password="test")
+        user.save()
+        feature = Feature(name="Create a Test", author=user, paid=True)
+        feature.save()
+        self.assertEqual(feature.name, "Create a Test")
+        self.assertTrue(feature.paid)
+        
     def upvotes_are_1(self):
         # test that has one upvote on creation
         user=User(username="test", password="test")
