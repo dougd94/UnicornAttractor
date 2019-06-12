@@ -1,18 +1,7 @@
 language: python
 python:
     - "3.4"
-# install: "pip install -r requirements.txt"
-before_script:
-  - pip install -r requirements.txt 
-  - git clone https://github.com/z4r/python-coveralls-example.git
-  - cd python-coveralls-example
-  - git checkout -qf 17b8119796516195527dcb4f454a2ebd41d60244
-  - py.test example/tests.py --cov=example
-  - cd -
+install: "pip install -r requirements.txt"
 script:
     - SECRET_KEY="whatever" ./manage.py test
-    - py.test coveralls/tests.py --doctest-modules --pep8 coveralls -v --cov coveralls --cov-report term-missing
-# script:
-#   - py.test coveralls/tests.py --doctest-modules --pep8 coveralls -v --cov coveralls --cov-report term-missing
-after_success:
-  - coveralls
+    
