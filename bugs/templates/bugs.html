@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block page_title %}Bugs Page{% endblock %} {% block page_heading %}Bugs{% endblock %} {% block content %}
+{% if not message in messages %}<span class="form-margin"></span></span>{% endif %}
+<h1 class="text-center">Bugs</h1>
+<h5 class="text-center">You can add bugs for free, to view and purchase features click <a href="{% url 'features' %}">Here</a></h5>
+<h5 class="text-center">You must be logged in to add bugs.</h5>
+{% if user.is_authenticated %}
+<div class="text-center"><a href="{% url 'new_bug' %}"><button type="button" class="btn btn-success">Add a Bug</button></a></div> {% endif %}
+<h4>{{bugs.count}} Bug{{bugs|pluralize}} found:</h4>
+<div class="row row-flex">
+    {% for bug in bugs %}
+    <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-4 display">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="col-4">
+                    <h3 class="panel-title">{{ bug.name|capfirst }}</h3>
+                </div>
+
+                <div class="col-4 text-right">
+                    <a href="upvote/{{ bug.id }}"><i class="material-icons upvote" alt="upvote">arrow_upward</i><span class="badge">{{ bug.upvotes }}</span></a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <h5>{{bug.author|capfirst}}</h5>
+                <p>
+                    <div class="{{bug.status}} text-center">Status: <strong>{{ bug.get_status_display }}</strong></div>
+                </p>
+                <p><span class="">Date Created: {{ bug.created_date }} </span> </p>
+                <span class=""><i class="material-icons" alt="views">remove_red_eye</i><span class="badge">{{ bug.views }}</span></span>
+                <p class="bug-description">{{ bug.description|truncatewords:30}}</p>
+                <p><a href="{% url 'bug_detail' bug.id %}" class="btn btn-primary">Read more</a></p>
+            </div>
+        </div>
+
+    </div>
+    {% endfor %}
+
+</div>
+{% endblock %}

@@ -11,7 +11,12 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-
+if os.environ.get('C9_HOSTNAME'):
+    import env
+    # SECURITY WARNING: don't run with debug turned on in production!
+    DEBUG = True
+else:
+    DEBUG = False
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -20,12 +25,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '7^o&ej)9tzqv!6xgv(ij=^=_kb_v1pdogt-i!$j5@*mf41&%-q'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['unicorn-fullstack-doug94.c9users.io']
 
 
 # Application definition
@@ -37,6 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts',
+    'features',
+    'bugs',
+    'cart',
+    'checkout',
+    'stripe',
+    'django_forms_bootstrap',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +65,7 @@ ROOT_URLCONF = 'unicornattractor.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -62,6 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.contexts.cart_contents',
             ],
         },
     },
@@ -98,6 +110,10 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'accounts.backends.CaseInsensitiveAuth'
+]
 
 
 # Internationalization
@@ -118,3 +134,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
+
+STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE')
+STRIPE_SECRET = os.getenv('STRIPE_SECRET')
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = os.environ.get("EMAIL_ADDRESS")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
+EMAIL_PORT = 587

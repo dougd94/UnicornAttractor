@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% load static from staticfiles %} {% load bootstrap_tags %} {% block content %}
+<div class="row row-flex">
+    {% for item in cart_items %}
+    <div class="col-xs-12 col-md-4 panel panel-default">
+        <!--if item is paid for it must be an upvote so it is 5 euro -->
+        {% if item.feature.paid == True %}
+        <h4>Upvote</h4>
+        <hr> {% endif %}
+        <h3>Feature Name: {{ item.feature.name }}</h3>
+        <p class="feature-description">Description: {{ item.feature.description|truncatewords:20 }}</p>
+        <p>Price: <span class="glyphicon glyphicon-euro" aria-hidden="true"></span><strong>{{ item.feature.price }}</strong></p>
+        <p>
+            <form class="form-inline" method="post" action="{% url 'remove_cart' item.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Remove</button>
+            </form>
+        </p>
+    </div>
+
+    {% endfor %}
+</div>
+
+<div class="row row-flex">
+    <div class="col-12">
+        <p>Total:</p>
+        <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span><strong>{{ total }}</strong></p>
+        <a href="{% url 'checkout' %}" class="btn btn-success" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
+    </div>
+</div>
+
+{% endblock %}
