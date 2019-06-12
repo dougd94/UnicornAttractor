@@ -1,10 +1,10 @@
-{% extends 'base.html' %} {% block page_title %}Features Page{% endblock %} {% block page_heading %}Features{% endblock %} {% block content %}
-{% if not message in messages %}<span class="form-margin"></span></span>{% endif %}
+{% extends 'base.html' %} {% block page_title %}Features Page{% endblock %} {% block page_heading %}Features{% endblock %} {% block content %} {% if not message in messages %}<span class="form-margin"></span></span>{% endif %}
 <h1 class="text-center">Features</h1>
 <h5 class="text-center">Features cost <strong>€50</strong> to create and <strong>€5</strong> to upvote.
-When you buy a feature, it comes with one upvote and you may upvote any feature as many times as you want.
-<p>Bugs are <strong>free</strong> - add a bug
-<a href="{% url 'bugs' %}">Here</a></p></h5>
+    <p>When you buy a feature, it comes with one upvote and you may upvote any feature as many times as you want.</p>
+    <p>Bugs are <strong>free</strong> - add a bug
+        <a href="{% url 'bugs' %}">Here</a></p>
+</h5>
 <h5 class="text-center">You must be logged in to add features.</h5>
 {% if user.is_authenticated %}
 <div class="text-center"><a href="{% url 'new_feature' %}"><button type="button" class="btn btn-success">Add a Feature</button></a></div> {% endif %}
