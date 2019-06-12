@@ -7,7 +7,7 @@
     <h2>Your Features:</h2>
     <h4>Your unpaid features will not be shown on the features page until <strong>paid!</strong></h4>
 </div>
-<p><h4 class="text-center">{{features.count}} Feature{{features|pluralize}} found:</h4></p>
+<p><h4 class="text-left">{{features.count}} Feature{{features|pluralize}} found:</h4></p>
 {% for feature in features %}
 <div class="col-sm-12 col-md-4 text-center">
     <div class="panel panel-primary">
@@ -38,7 +38,7 @@
 <div class="row">
 <div class="text-center">
     <h2>Your Bugs:</h2>
-    <h4>{{bugs.count}} Bug{{bugs|pluralize}} found:</h4>
+    <h4 class="text-left">{{bugs.count}} Bug{{bugs|pluralize}} found:</h4>
     {% for bug in bugs %}
     <div class="col-sm-12 col-md-4 text-center">
         <div class="panel panel-primary">

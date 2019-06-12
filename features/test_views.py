@@ -10,5 +10,5 @@ class TestViews(TestCase):
    
         
     def test_get_edit_page_for_feature_that_does_not_exist(self):
-        page = self.client.get("/feature/1")
+        page = self.client.get("/feature/10")
         self.assertEqual(page.status_code, 404)
