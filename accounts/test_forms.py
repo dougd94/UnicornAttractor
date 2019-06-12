@@ -14,5 +14,9 @@ class CanCreateAccount(TestCase):
         form = UserRegistrationForm({"password1": "123456qw", "password2": "123456qw", "email": "123@gmail.com"})
         self.assertFalse(form.is_valid())
     
+    def cant_pass_empty_string_as_username(self):
+        form = UserRegistrationForm({"username":"","password1": "123456qw", "password2": "123456qw", "email": "123@gmail.com"})
+        self.assertFalse(form.is_valid())
+    
 
     
