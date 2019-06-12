@@ -12,11 +12,11 @@
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    {% block head_js %} {% endblock %}
+    {% block head_js %}
+    {% endblock head_js %}
 </head>
 
 <body>
-    <!-- Fixed masthead -->
     <nav class="navbar navbar-masthead navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -30,9 +30,12 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Features</a></li>
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'features' %}">Features</a></li>
                     <li><a href="{% url 'bugs' %}">Bugs</a></li>
-                    <li><a href="#">Statistics</a></li>
+                    <li><a href="{% url 'view_cart' %}"><i class="small material-icons">shopping_cart</i>Cart{% if feature_count > 0 %}
+                            <label class="badge badge-warning">{{ feature_count }}</label>
+                            {% endif %}</a></li>
                     {% if user.is_authenticated %}
                     <li><a href="{% url 'profile' %}">Profile</a></li>
                     <li><a href="{% url 'logout' %}">Log Out</a></li>
@@ -57,5 +60,4 @@
         {% endif %} {% block content %} {% endblock %}
     </div>
 </body>
-
 </html>

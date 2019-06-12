@@ -1,10 +1,11 @@
-{% extends "base.html" %}
-
-{% block content %}
-    <h1 class="form-margin">Add Bug</h1>
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-success">Add</button>
-    </form>
+{% extends "base.html" %} 
+{% load bootstrap_tags %} 
+{% block content %} 
+{% if not message in messages %}<span class="form-margin"></span></span>{% endif %}
+<h1>Add Bug</h1>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Add</button>
+</form>
 {% endblock %}

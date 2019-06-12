@@ -5,8 +5,9 @@ a {
 }
 
 /*index*/
-
-
+.small{
+    font-size:1.5rem;
+}
 
 .upvotebtn {
     background: none;

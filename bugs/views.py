@@ -13,12 +13,13 @@ def all_bugs(request):
         ).order_by('-created_date')
     return render(request, "bugs.html", {"bugs": bugs})
     
-
+@login_required 
 def bug_detail(request, pk):
     """
     bug pages
     """
     bug = get_object_or_404(Bug, pk=pk)
+    # views iterate up by one every viewing.
     bug.views += 1
     bug.save()
     comments = Comment.objects.filter(bug=bug).order_by('-created_date')
@@ -46,6 +47,7 @@ def bug_upvote(request, bug_id):
     """
     voter=request.user.id
     bugpk = Bug.objects.get(pk=bug_id)
+    # if user has voted on it already no upvote
     check = Votes.objects.filter(bugpk=bugpk, voter=voter)
     if not check:
         check = Votes(bugpk = bugpk, voter_id = request.user.id)

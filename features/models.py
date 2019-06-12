@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 # Create your models here.
-class Bug(models.Model):
+class Feature(models.Model):
     STATUS_CHOICES = (
             ('T', 'To Do'),
             ('D', 'Doing'),
@@ -14,30 +14,28 @@ class Bug(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User , default='')
     views = models.IntegerField(default=0)
+    price = models.IntegerField(default=50)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='T')
-
+    # price = models.DecimalField(max_digits=2, decimal_places=0, default='50')
+    paid = models.BooleanField(default=False, blank=False)
+    quantity = models.DecimalField(max_digits=1, decimal_places=0, default='1')
     def __str__(self):
         return self.name
-
-class Votes(models.Model):
-    ''' upvote'''
-    voter = models.ForeignKey(User)
-    bugpk = models.ForeignKey(Bug)
-    class Meta:
-        # checks voter and bug against each other to see if upvote allowed
-        unique_together = ("voter", "bugpk")
-     
-    def __str__(self):
-        return str(self.voter)
-       
-class Comment(models.Model):
+        
+class Commentf(models.Model):
     """
     Comments for under bug pages
     """
-    bug = models.ForeignKey(Bug)
+    feature = models.ForeignKey(Feature)
     author = models.ForeignKey(User)
     content = models.TextField(max_length=300, blank=False)
     created_date = models.DateTimeField(null=True, auto_now_add=True)
-    
     def __str__(self):
-        return '{}-{}'.format(self.bug.name, str(self.author.username))
+        return '{}-{}'.format(self.feature.name, str(self.author.username))
+    
+class Votesf(models.Model):
+    ''' upvote'''
+    voterf = models.ForeignKey(User)
+    feature = models.ForeignKey(Feature)
+    class Meta:
+        unique_together = ("voterf", "feature")

@@ -17,6 +17,9 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from accounts import urls as urls_accounts
 from bugs import urls as urls_bugs
+from cart import urls as urls_cart
+from checkout import urls as urls_checkout
+from features import urls as urls_features
 from accounts.views import index
 from django.views import static
 
@@ -25,5 +28,9 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index),
     url(r'^accounts/', include(urls_accounts)),
+    url(r'^features/', include(urls_features)),
     url(r'^bugs/', include(urls_bugs)),
+    url(r'^cart/', include(urls_cart)),
+    url(r'^checkout/', include(urls_checkout)),
+
 ]

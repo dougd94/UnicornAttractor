@@ -1,8 +1,9 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}{% block page_title %}{{bug.name}}{% endblock %} {% block page_heading %}{{bug.name}}{% endblock %} {% block content %}
 <div class="container">
-    <div class="row form-margin">
+    {% if not message in messages %}<span class="form-margin"></span></span>{% endif %}
+    <div class="row">
         <div class="text-center">
-            <h1>{{ bug.name|capfirst }}</h1>
+            <h1>Bug Request: {{ bug.name|capfirst }}</h1>
             <p>
                 <div class="{{bug.status}}">Status: <strong>{{ bug.get_status_display }}</strong></div>
             </p>
