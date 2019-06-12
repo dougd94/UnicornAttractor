@@ -9,6 +9,10 @@ class CanCreateAccount(TestCase):
     def cant_create_account_with_non_matching_password(self):
         form = UserRegistrationForm({'username':"TestUser", "password1": "123456", "password2": "123456qw", "email": "123@gmail.com"})
         self.assertFalse(form.is_valid())
+        
+    def cant_without_a_username(self):
+        form = UserRegistrationForm({"password1": "123456qw", "password2": "123456qw", "email": "123@gmail.com"})
+        self.assertFalse(form.is_valid())
     
 
     
