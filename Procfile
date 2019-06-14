@@ -1,1 +1,1 @@
-web python manage.py
+web: gunicorn unicorn-attractor-1.wsgi:application
