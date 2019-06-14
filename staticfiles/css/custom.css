@@ -1,0 +1,68 @@
+a {
+    
+    text-decoration: none;
+    /* no underline */
+}
+
+/*index*/
+.small{
+    font-size:1.5rem;
+}
+
+.upvotebtn {
+    background: none;
+    border: 0;
+    padding: 0;
+}
+
+.form-margin {
+    padding-top: 50px;
+    margin-top: 20px;
+}
+
+.logo {
+    height: 100px;
+}
+
+/*status styles*/
+.T {
+    background-color: #ffe100;
+}
+
+.D {
+    background-color: #63ff99;
+}
+
+
+.F {
+    background-color: #b50101;
+    color: white;
+}
+
+
+/* upvotes*/
+.upvote {
+    color: white;
+}
+
+.upvotedark {
+    color: black;
+}
+
+.upvotedark:hover {
+    color: red;
+}
+
+.upvote:hover {
+    color: red;
+}
+
+.upvote:active {
+    color: red;
+}
+
+
+/*forms*/
+.form-width {
+    width: 100%;
+}
