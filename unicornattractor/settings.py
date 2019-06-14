@@ -11,12 +11,13 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import dj_database_url
 if os.environ.get('C9_HOSTNAME'):
     import env
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = True
 else:
-    DEBUG = False
+    DEBUG = True
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -29,7 +30,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 
 
-ALLOWED_HOSTS = ['unicorn-fullstack-doug94.c9users.io']
+ALLOWED_HOSTS = ['unicorn-fullstack-doug94.c9users.io', "https://unicorn-attractor-1.herokuapp.com/"]
 
 
 # Application definition
@@ -85,12 +86,14 @@ WSGI_APPLICATION = 'unicornattractor.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}
 
 
 # Password validation
