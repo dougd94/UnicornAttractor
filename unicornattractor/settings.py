@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 
 
-ALLOWED_HOSTS = ['unicorn-fullstack-doug94.c9users.io', "https://unicorn-attractor-1.herokuapp.com/"]
+ALLOWED_HOSTS = ['unicorn-fullstack-doug94.c9users.io', "unicorn-attractor-1.herokuapp.com"]
 
 
 # Application definition
