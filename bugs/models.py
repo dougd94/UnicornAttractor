@@ -12,7 +12,7 @@ class Bug(models.Model):
     description = models.TextField()
     upvotes = models.DecimalField(max_digits=10, decimal_places=0, default='0')
     created_date = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(User , default='')
+    author = models.ForeignKey(User)
     views = models.IntegerField(default=0)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='T')
 
