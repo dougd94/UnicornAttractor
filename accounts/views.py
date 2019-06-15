@@ -20,22 +20,25 @@ def Get_Data(request,**kwargs):
     bugs = Bug.objects.all().count()
     features = Feature.objects.filter(paid=True).count()
     default = [bugs, features]
-    labels2 = ['Unpaid','Paid']
+    # paid unpaid
+    labels2 = ['Unpaid', 'Paid']
     paid = Feature.objects.filter(paid=True).count()
     unpaid = Feature.objects.filter(paid=False).count()
-    default2 = [unpaid, paid]
+    default2 = [unpaid]
+    default3 = [paid]
+    default5 =[unpaid, paid]
     data= {
+        # chart1 features bugs
         "labels": labels,
         "default" : default,
+        # chart 2 unpaid features
+        "labels2" : labels2,
         "default2": default2,
-        "labels2" : labels2
-    }
-    # paid and unpaid features
-    
-    # data2= {
-    #     "labels": labels2,
-    #     "default" : default2,
-    # }
+        # chart 2 paid fetures
+        "default3": default3,
+        "default5" : default5
+    } 
+
     return JsonResponse(data)
     
 @login_required
