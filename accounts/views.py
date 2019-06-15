@@ -5,12 +5,39 @@ from django.contrib.auth.models import User
 from accounts.forms import UserLoginForm, UserRegistrationForm
 from bugs.models import Bug
 from features.models import Feature
+from django.http import JsonResponse
 
 
 def index(request):
-    """Return the index.html file"""
+    """Return the index.html file and statistics"""
+    
+    
     return render(request,  'index.html')
+    
 
+def Get_Data(request,**kwargs):
+    labels = ['Bugs','Features']
+    bugs = Bug.objects.all().count()
+    features = Feature.objects.filter(paid=True).count()
+    default = [bugs, features]
+    labels2 = ['Unpaid','Paid']
+    paid = Feature.objects.filter(paid=True).count()
+    unpaid = Feature.objects.filter(paid=False).count()
+    default2 = [unpaid, paid]
+    data= {
+        "labels": labels,
+        "default" : default,
+        "default2": default2,
+        "labels2" : labels2
+    }
+    # paid and unpaid features
+    
+    # data2= {
+    #     "labels": labels2,
+    #     "default" : default2,
+    # }
+    return JsonResponse(data)
+    
 @login_required
 def logout(request):
     """Log the user out"""

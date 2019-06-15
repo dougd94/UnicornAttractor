@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'checkout',
     'stripe',
     'django_forms_bootstrap',
-    'dj_database_url'
+    'dj_database_url',
+    
 ]
 
 MIDDLEWARE = [
