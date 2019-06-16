@@ -6,7 +6,7 @@ from accounts.forms import UserLoginForm, UserRegistrationForm
 from bugs.models import Bug
 from features.models import Feature
 from django.http import JsonResponse
-from django.db.models import Max
+
 
 def index(request):
     """Return the index.html file and statistics"""
@@ -27,14 +27,10 @@ def Get_Data(request,**kwargs):
     unpaid = Feature.objects.filter(paid=False).count()
     default2 =[unpaid, paid]
     # chart 3 upvotes bug /features
-    labels3=['Most Upvoted Bug', 'Most Upvoted Feature']
-    # highest upvotes bug
-    bugupvotes = Bug.objects.all().aggregate(Max('upvotes'))
-    # only paid features
-    featureUpvoteFilter = Feature.objects.filter(paid=True)
-    # gets highest upvoted filter
-    featureupvote = featureUpvoteFilter.aggregate(Max('upvotes'))
-    default3=[bugupvotes, featureupvote]
+    labels3=['Bug Upvotes', 'Feature Upvotes']
+    bugfind=Bug.objects.all()
+    bugvotes= Bug.objects.filter(bugfin.upvotes).count()
+    default3=[bugsvotes]
     data= {
         # chart1 features bugs
         "labels": labels,

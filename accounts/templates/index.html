@@ -35,8 +35,7 @@ $.ajax( {
         })
         // chart 2 unpaid + paid features
         labels2= data.labels2;
-        DefaultData2 = data.default5;
-        // DefaultData3 = data.default3;
+        DefaultData2 = data.default2;
         var ctx2=document.getElementById('paidfeatures').getContext('2d');
         var paidfeatures=new Chart(ctx2, {
             type: 'bar',
@@ -61,10 +60,33 @@ $.ajax( {
                 }]
             }
         })
-    },
         // var DefaultData2=[]
         // var labels=[]
         // paid and unpaid features chart
+         // chart 3 unpaid + paid features
+        labels3= data.labels3;
+        DefaultData3 = data.default3;
+        var ctx3=document.getElementById('upvotesfeatures').getContext('2d');
+        var paidfeatures=new Chart(ctx3, {
+            type: 'polarArea',
+            data: {
+                labels: labels3,
+                datasets: [ {
+                    label: 'Features',
+                    data: DefaultData3,
+                    backgroundColor: [
+                        'rgba(214, 152, 185, 0.2)',
+                        'rgba(174, 221, 205, 0.2)',
+                    ],
+                     borderColor: [
+                        'rgba(223, 117, 153, 1)',
+                        'rgba(114, 214, 201, 1)', ],
+                        borderWidth:1
+                }]
+            }
+        })
+    },
+        
        
         error: function(error_data) {
             console.log("error");
@@ -95,6 +117,10 @@ $.ajax( {
 <div class="col-md-6 col-xs-12">
     <label for"paidfeatures">Ammount of paid and unpaid features</label>
     <canvas id="paidfeatures"></canvas>
+</div>
+<div class="col--12">
+    <canvas id="upvotesfeatures"></canvas>
+    <label for"upvotesfeatures">Comparison of highest upvoted bug and feature.</label>
 </div>
 
 {% endblock %}
