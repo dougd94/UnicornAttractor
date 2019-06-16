@@ -30,11 +30,15 @@ def Get_Data(request,**kwargs):
     labels3=['Most Upvoted Bug', 'Most Upvoted Feature']
     # highest upvotes bug
     bugupvotes = Bug.objects.all().aggregate(Max('upvotes'))
+    bvote = bugupvotes.get('upvotes__max')
     # only paid features
     featureUpvoteFilter = Feature.objects.filter(paid=True)
     # gets highest upvoted filter
     featureupvote = featureUpvoteFilter.aggregate(Max('upvotes'))
-    default3=[bugupvotes, featureupvote]
+    # pulls out the number from the dict
+    fupvote = featureupvote.get('upvotes__max')
+    # feat=featureupvote.upvotes__max
+    default3=[bvote, fupvote]
     data= {
         # chart1 features bugs
         "labels": labels,
