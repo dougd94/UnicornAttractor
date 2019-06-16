@@ -86,7 +86,7 @@ $.ajax({
                 }]
             }
         })
-         // chart 4 doingdone for bugs
+        // chart 4 doingdone for bugs
         labels4 = data.labels4;
         DefaultData4 = data.default4;
         var ctx4 = document.getElementById('doingdone').getContext('2d');
@@ -98,13 +98,39 @@ $.ajax({
                     label: 'Doing Done and Finished',
                     data: DefaultData4,
                     backgroundColor: [
+                        'rgba(255, 199, 133, 0.2)',
                         'rgba(214, 152, 185, 0.2)',
-                        'rgba(174, 221, 205, 0.2)',
-                        "rgb(56, 81, 112, 0.2)"
+                        'rgba(150, 178, 171, 0.2)',
                     ],
                     borderColor: [
-                        'rgba(223, 117, 153, 1)',
-                        'rgba(114, 214, 201, 1)',
+                        'rgba(255, 182, 119, 1)',
+                        'rgba(214, 152, 185, 1)',
+                        "rgba(97, 192, 191, 1)",
+                    ],
+                    borderWidth: 1
+                }]
+            }
+        })
+        // chart 5 doingdone for features
+        labels5 = data.labels5;
+        DefaultData5 = data.default5;
+        var ctx5 = document.getElementById('doingdonef').getContext('2d');
+        var doingdonef = new Chart(ctx5, {
+            type: 'pie',
+            data: {
+                labels: labels5,
+                datasets: [{
+                    label: 'Doing Done and Finished',
+                    data: DefaultData5,
+                    backgroundColor: [
+                        'rgba(232, 211, 255, 0.2)',
+                        'rgba(222, 252, 252, 0.2)',
+                        'rgba(150, 178, 171, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(105, 119, 155, 1)',
+                        'rgba(166, 227, 233, 1)',
+                        "rgba(97, 192, 191, 1)",
                     ],
                     borderWidth: 1
                 }]
@@ -151,5 +177,8 @@ $.ajax({
     <canvas id="doingdone"></canvas>
     <label for"doingdone">Count of bugs To Do/Doing or Finished</label>
 </div>
-
+<div class="col-xs-12 col-md-6">
+    <canvas id="doingdonef"></canvas>
+    <label for"doingdonef">Count of Features To Do/Doing or Finished</label>
+</div>
 {% endblock %}
