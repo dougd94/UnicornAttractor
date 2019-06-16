@@ -12,7 +12,7 @@ class Feature(models.Model):
     description = models.TextField()
     upvotes = models.DecimalField(max_digits=10, decimal_places=0, default='0')
     created_date = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(User , default='')
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     views = models.IntegerField(default=0)
     price = models.IntegerField(default=50)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='T')
@@ -26,8 +26,8 @@ class Commentf(models.Model):
     """
     Comments for under bug pages
     """
-    feature = models.ForeignKey(Feature)
-    author = models.ForeignKey(User)
+    feature = models.ForeignKey(Feature, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField(max_length=300, blank=False)
     created_date = models.DateTimeField(null=True, auto_now_add=True)
     def __str__(self):
@@ -35,7 +35,7 @@ class Commentf(models.Model):
     
 class Votesf(models.Model):
     ''' upvote'''
-    voterf = models.ForeignKey(User)
-    feature = models.ForeignKey(Feature)
+    voterf = models.ForeignKey(User, on_delete=models.CASCADE)
+    feature = models.ForeignKey(Feature, on_delete=models.CASCADE)
     class Meta:
         unique_together = ("voterf", "feature")
