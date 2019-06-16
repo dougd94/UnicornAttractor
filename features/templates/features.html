@@ -19,8 +19,9 @@
                 </div>
 
                 <div class="col-4 text-right">
-                    <!--<a href="upvote/{{ feature.id }}"><i class="material-icons upvote" alt="upvote">arrow_upward</i><span class="badge">{{ feature.upvotes }}</span>
-                    <span class="badge">Price: €5.00</span></a>-->
+                    <a href="{% url 'feature_upvote' feature.id %}"><i class="material-icons upvote" alt="upvote">arrow_upward</i>
+                     <span class="badge">{{ feature.upvotes }}</span>
+                    <span class="badge">Price: €5.00</span></a>
                 </div>
             </div>
             <div class="panel-body">
