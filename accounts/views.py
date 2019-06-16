@@ -39,6 +39,12 @@ def Get_Data(request,**kwargs):
     fupvote = featureupvote.get('upvotes__max')
     # feat=featureupvote.upvotes__max
     default3=[bvote, fupvote]
+    # chart 4 bug doing to do done
+    bugToDo= Bug.objects.filter(status="T").count()
+    bugDoing= Bug.objects.filter(status="D").count()
+    bugFinished = Bug.objects.filter(status="F").count()
+    labels4 = ["Bugs To Do", "Bug Doing", "Bug Finished"]
+    default4=[bugToDo,bugDoing,bugFinished]
     data= {
         # chart1 features bugs
         "labels": labels,
@@ -50,6 +56,9 @@ def Get_Data(request,**kwargs):
         # chart 3
         "labels3" : labels3,
         "default3":default3,
+        # chart 4 to do
+        "default4" : default4,
+        "labels4" : labels4,
     } 
 
     return JsonResponse(data)
