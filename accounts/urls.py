@@ -1,5 +1,6 @@
 from django.conf.urls import url, include
 from .views import logout, login, registration, user_profile, index, Get_Data
+# delete
 from . import url_reset
 
 urlpatterns = [

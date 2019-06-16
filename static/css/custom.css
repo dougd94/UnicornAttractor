@@ -66,3 +66,9 @@ a {
 .form-width {
     width: 100%;
 }
+
+
+/*profile*/
+.delete:hover {
+    color: red;
+}

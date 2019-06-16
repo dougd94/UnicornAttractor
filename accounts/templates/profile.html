@@ -3,58 +3,60 @@
 <hr>
 
 <div class="row">
-<div class="text-center">
-    <h2>Your Features:</h2>
-    <h4>Your unpaid features will not be shown on the features page until they are <strong>paid!</strong></h4>
-</div>
-<p><h4 class="text-left">{{features.count}} Feature{{features|pluralize}} found:</h4></p>
-{% for feature in features %}
-<div class="col-sm-12 col-md-4 text-center">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-                <a href="{% url 'feature_detail' feature.id %}">
-                Feature Id: {{feature.id}} |
-                Name: {{feature.name}}</a>
-            </h3>
-        </div>
-        <div class="panel-body">
-            <h3><span class="{{feature.status}}"> Status: {{feature.get_status_display}}</span></h3>
-            {% if feature.paid == False %}<label for="notpaid">Status: Not Paid</label>
-            <label for="add">You must pay before it is listed</label>
-            <form id="add" method="POST" action="{% url 'add_to_cart' feature.id %}">
-                {%csrf_token%}
-                <button class="btn btn-success">Add to Cart</button>
-            </form>
-            {% endif%} {% if feature.paid == True %}<label for="paid">Status: Paid</label>
-            <br>
-            <button class="btn btn-success" disabled>Add to Cart</button></a>
-            {% endif %}
-        </div>
+    <div class="text-center">
+        <h2>Your Features:</h2>
+        <h4>Your unpaid features will not be shown on the features page until they are <strong>paid!</strong></h4>
     </div>
-</div>
-{% endfor %}
-</div>
-<div class="row">
-<div class="text-center">
-    <h2>Your Bugs:</h2>
-    <h4 class="text-left">{{bugs.count}} Bug{{bugs|pluralize}} found:</h4>
-    {% for bug in bugs %}
+    <p>
+        <h4 class="text-left">{{features.count}} Feature{{features|pluralize}} found:</h4>
+    </p>
+    {% for feature in features %}
     <div class="col-sm-12 col-md-4 text-center">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    <a href="{% url 'bug_detail' bug.id %}">
-                    Bug Id: {{bug.id}} |
-                    Name: {{bug.name}}</a>
+                    <a href="{% url 'feature_detail' feature.id %}">
+                Feature Id: {{feature.id}} |
+                Name: {{feature.name}}</a>
                 </h3>
             </div>
             <div class="panel-body">
-                <h3><span class="{{bug.status}}"> Status: {{bug.get_status_display}}</span></h3>
+                <h3><span class="{{feature.status}}"> Status: {{feature.get_status_display}}</span></h3>
+                {% if feature.paid == False %}<label for="notpaid">Status: Not Paid</label>
+                <label for="add">You must pay before it is listed</label>
+                <form id="add" method="POST" action="{% url 'add_to_cart' feature.id %}">
+                    {%csrf_token%}
+                    <button class="btn btn-success">Add to Cart</button>
+                </form>
+                {% endif%} {% if feature.paid == True %}<label for="paid">Status: Paid</label>
+                <br>
+                <button class="btn btn-success" disabled>Add to Cart</button></a>
+                {% endif %}
             </div>
         </div>
     </div>
+    {% endfor %}
 </div>
-{% endfor %}
+<div class="row">
+    <div class="text-center">
+        <h2>Your Bugs:</h2>
+        <h4 class="text-left">{{bugs.count}} Bug{{bugs|pluralize}} found:</h4>
+        {% for bug in bugs %}
+        <div class="col-sm-12 col-md-4 text-center">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <a href="{% url 'bug_detail' bug.id %}">
+                    Bug Id: {{bug.id}} |
+                    Name: {{bug.name}}</a>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <h3><span class="{{bug.status}}"> Status: {{bug.get_status_display}}</span></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}

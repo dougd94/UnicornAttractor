@@ -24,8 +24,6 @@ def Get_Data(request,**kwargs):
     labels2 = ['Unpaid', 'Paid']
     paid = Feature.objects.filter(paid=True).count()
     unpaid = Feature.objects.filter(paid=False).count()
-    default2 = [unpaid]
-    default3 = [paid]
     default5 =[unpaid, paid]
     data= {
         # chart1 features bugs
@@ -33,9 +31,7 @@ def Get_Data(request,**kwargs):
         "default" : default,
         # chart 2 unpaid features
         "labels2" : labels2,
-        "default2": default2,
         # chart 2 paid fetures
-        "default3": default3,
         "default5" : default5
     } 
 
@@ -47,6 +43,8 @@ def logout(request):
     auth.logout(request)
     messages.success(request, "You have successfully been logged out", extra_tags="alert-success")
     return redirect(reverse('index'))
+    
+
 
 
 def login(request):
