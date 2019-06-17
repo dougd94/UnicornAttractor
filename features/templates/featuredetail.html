@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} {% load bootstrap_tags %} {% block content %}
 <div class="container">
     {% if not message in messages %}<span class="form-margin"></span></span>{% endif %}
     <div class="row">
@@ -38,7 +38,7 @@
     <hr>
     <div class="row">
         <form method="POST" class="form-width">
-            {% csrf_token %} {{comment_form.as_p}} {% if request.user.is_authenticated %}
+            {% csrf_token %} {{comment_form|as_bootstrap}} {% if request.user.is_authenticated %}
             <button class='btn btn-success' type='submit'>Comment</button> {% else %}
             <!--shows disabled comment button if user not loged in-->
             <button class='btn btn-success' type='submit' disabled>Comment</button> {% endif %}

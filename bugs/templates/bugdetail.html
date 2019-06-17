@@ -1,4 +1,7 @@
-{% extends "base.html" %}{% block page_title %}{{bug.name}}{% endblock %} {% block page_heading %}{{bug.name}}{% endblock %} {% block content %}
+{% extends "base.html" %}{% load bootstrap_tags %} 
+{% block page_title %}{{bug.name}}{% endblock %} 
+{% block page_heading %}{{bug.name}}{% endblock %
+} {% block content %}
 <div class="container">
     {% if not message in messages %}<span class="form-margin"></span></span>{% endif %}
     <div class="row">
@@ -24,7 +27,7 @@
     <div class="row">
         <form method="POST" class="form-width">
             {% csrf_token %}
-            {{comment_form.as_p}}
+            {{comment_form|as_bootstrap}}
             {% if request.user.is_authenticated %}
             <button class='btn btn-success' type='submit'>Comment</button>
             {% else %}
