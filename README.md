@@ -68,10 +68,10 @@ then did coverage html to see the percentage for each app.
 note: I ran this on the entire app. I didn't write tests for stuff like apps.py or admin.py
 only Forms.py / Views.py or Models.py
 * Accounts 51%
-*Bugs 64%
-*Features 65%
-*Cart 51%
-*Checkout *61%
+* Bugs 64%
+* Features 65%
+* Cart 51%
+* Checkout *61%
 
 ## Manual Testing
 Non Logged in user:
