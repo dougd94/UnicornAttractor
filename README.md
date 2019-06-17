@@ -68,15 +68,15 @@ then did coverage html to see the percentage for each app.
 note: I ran this on the entire app. I didn't write tests for stuff like apps.py or admin.py
 only Forms.py / Views.py or Models.py
 * Accounts
-..*51%
+⋅⋅*51%
 *Bugs
-..*64%
+⋅⋅*64%
 *Features
-..*65%
+⋅⋅*65%
 *Cart
-..*51%
+⋅⋅*51%
 *Checkout
-..*61%
+⋅⋅*61%
 
 ## Manual Testing
 Non Logged in user:
@@ -88,4 +88,5 @@ Non Logged in user:
 * I attempted to register with unique name and email and matching passwords, and was successful.
 * I attempted to get in the checkout by entering the url and was redirected to log in.
 
-Logged in user.
+Logged in user:
+
