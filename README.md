@@ -73,7 +73,7 @@ only Forms.py / Views.py or Models.py
 * Cart 51%
 * Checkout 61%
 
-## Manual Testing
+### Manual Testing
 Non Logged in user:
 * Should only see Home Features Bugs Cart Register Log In in the navbar.
 * should be redirected to log in if they click cart
