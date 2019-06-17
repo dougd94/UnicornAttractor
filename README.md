@@ -3,7 +3,12 @@
 
 ## [Deployed Website Link](https://unicorn-attractor-1.herokuapp.com)
 
-___
+##  Test Card
+### Important
+For testing buying features and features upvotes. 
+Use card number 4242424242424242
+Any cvc number of three digits 
+and any expiry date in the future.
 
 ## UX
 
