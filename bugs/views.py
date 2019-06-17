@@ -10,7 +10,7 @@ from .forms import BugForm, CommentForm
 # show all bugs
 def all_bugs(request):
     bugs = Bug.objects.filter(created_date__lte=timezone.now()
-        ).order_by('-created_date')
+        ).order_by('-upvotes')
     return render(request, "bugs.html", {"bugs": bugs})
     
 @login_required 
