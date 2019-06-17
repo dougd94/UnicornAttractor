@@ -3,6 +3,9 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 # Create your models here.
 class Feature(models.Model):
+    """
+    feature model
+    """
     STATUS_CHOICES = (
             ('T', 'To Do'),
             ('D', 'Doing'),
@@ -16,7 +19,6 @@ class Feature(models.Model):
     views = models.IntegerField(default=0)
     price = models.IntegerField(default=50)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='T')
-    # price = models.DecimalField(max_digits=2, decimal_places=0, default='50')
     paid = models.BooleanField(default=False, blank=False)
     quantity = models.DecimalField(max_digits=1, decimal_places=0, default='1')
     def __str__(self):

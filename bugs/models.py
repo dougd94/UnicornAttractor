@@ -3,6 +3,9 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 # Create your models here.
 class Bug(models.Model):
+    """
+    bug model
+    """
     STATUS_CHOICES = (
             ('T', 'To Do'),
             ('D', 'Doing'),
