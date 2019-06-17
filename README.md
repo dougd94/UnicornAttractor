@@ -51,6 +51,8 @@ ___
 
 ## Testing 
 
+### Automated
+
 Automated testing and manual testing was used for this project.
 Travis Continuous Integration was also utilized.
 [The travis page can be visited here](https://travis-ci.org/dougd94/UnicornAttractor) or you can click the badge at the top of the page, 
@@ -62,7 +64,9 @@ I installed  coverage (pip3 install coverage)
 and ran it for each app (coverage run --source= manage.py test)
 then did coverage html to see the percentage for each app.
 
-### Percent covered
+#### Percent covered
+note: I ran this on the entire app. I didn't write tests for stuff like apps.py or admin.py
+only Forms.py / Views.py or Models.py
 * Accounts
 ..*51%
 *Bugs
@@ -73,3 +77,15 @@ then did coverage html to see the percentage for each app.
 ..*51%
 *Checkout
 ..*61%
+
+## Manual Testing
+Non Logged in user:
+* Should only see Home Features Bugs Cart Register Log In in the navbar.
+* should be redirected to log in if they click cart
+* click all of these to see the correct template was used.
+* I tried to register with passwords that didnt match I got an error.
+* I tried to register with an already used email and username and I got errors.
+* I attempted to register with unique name and email and matching passwords, and was successful.
+* I attempted to get in the checkout by entering the url and was redirected to log in.
+
+Logged in user.
