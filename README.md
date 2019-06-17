@@ -71,7 +71,7 @@ only Forms.py / Views.py or Models.py
 * Bugs 64%
 * Features 65%
 * Cart 51%
-* Checkout *61%
+* Checkout 61%
 
 ## Manual Testing
 Non Logged in user:
