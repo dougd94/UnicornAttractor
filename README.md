@@ -36,7 +36,7 @@ and any expiry date in the future.
 * Users can comment on any bug or feature.
 * Users can use a "forget you password" feature.
 * Users can view statistics of current features and bugs on the homepage.
-
+* Admins can change the status (from the choices: To Do, Doing and Fininshed) within the admin panel
 ## Technologies Used
 * Cloud 9
 * Html 5

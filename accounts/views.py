@@ -43,13 +43,13 @@ def Get_Data(request,**kwargs):
     bugToDo= Bug.objects.filter(status="T").count()
     bugDoing= Bug.objects.filter(status="D").count()
     bugFinished = Bug.objects.filter(status="F").count()
-    labels4 = ["Bugs To Do", "Bug Doing", "Bug Finished"]
+    labels4 = ["Bugs To Do", "Bugs Doing", "Bugs Finished"]
     default4=[bugToDo,bugDoing,bugFinished]
     # chart 5 feature doing to do done
     featureToDo = Feature.objects.filter(status="T").filter(paid = True).count()
     featureDoing = Feature.objects.filter(status="D").filter(paid = True).count()
     featureFinished = Feature.objects.filter(status="F").filter(paid = True).count()
-    labels5 = ["Features To Do", "Features Doing", "Feature Finished"]
+    labels5 = ["Features To Do", "Features Doing", "Features Finished"]
     default5 = [featureToDo, featureDoing, featureFinished]
     data= {
         # chart1 features bugs
