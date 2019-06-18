@@ -2,6 +2,7 @@ from django.test import TestCase
 from .models import Bug
 
 class TestViews(TestCase):
+    
     def test_get_Bug_page(self):
         page = self.client.get("/bugs/")
         self.assertEqual(page.status_code, 200)

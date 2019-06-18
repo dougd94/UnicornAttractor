@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 
 class TestFeatureModel(TestCase):
+    
     # tests that auto paid = False
     def test_paid_defaults_to_False(self):
         user=User(username="test", password="test")

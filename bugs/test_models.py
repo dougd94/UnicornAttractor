@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 
 
 class TestBugModel(TestCase):
-    
         
     def upvotes_are_1(self):
         # test that has one upvote on creation
