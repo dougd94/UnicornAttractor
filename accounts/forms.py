@@ -20,7 +20,7 @@ class UserRegistrationForm(UserCreationForm):
     password2 = forms.CharField(
         label="Password Confirmation",
         widget=forms.PasswordInput)
-    
+    email = forms.EmailField(required=True)
     class Meta:
         model = User
         fields = ['email', 'username', 'password1', 'password2']
