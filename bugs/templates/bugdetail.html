@@ -1,7 +1,6 @@
 {% extends "base.html" %}{% load bootstrap_tags %} 
 {% block page_title %}{{bug.name}}{% endblock %} 
-{% block page_heading %}{{bug.name}}{% endblock %
-} {% block content %}
+{% block page_heading %}{{bug.name}}{% endblock %} {% block content %}
 <div class="container">
     {% if not message in messages %}<span class="form-margin"></span></span>{% endif %}
     <div class="row">

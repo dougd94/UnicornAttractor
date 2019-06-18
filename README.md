@@ -82,11 +82,21 @@ only Forms.py / Views.py or Models.py
 Non Logged in user:
 * Should only see Home Features Bugs Cart Register Log In in the navbar.
 * should be redirected to log in if they click cart
-* click all of these to see the correct template was used.
+* I clicked all of these to see the correct template was used.
 * I tried to register with passwords that didnt match I got an error.
 * I tried to register with an already used email and username and I got errors.
 * I attempted to register with unique name and email and matching passwords, and was successful.
 * I attempted to get in the checkout by entering the url and was redirected to log in.
 
 Logged in user:
+* Should see Home Features Bugs Cart Profile Log-Out in the navbar
+* I created bugs and features
+* I upvoted bugs to see that I could only vote once
+* I purchased features and saw that after purchase you could upvote as many times as you want.
+* I commented on things.
 
+
+I opened the website in developer tools and checked how it looked in a variety of devices.
+I opened it in firefox and chrome and saw no major issues.
+I found that you could register without putting in an email address.
+I was happy with the result.
