@@ -42,6 +42,7 @@ and any expiry date in the future.
 * Html 5
 * Css
 * Jquery
+* Charts.js
 * Javascript
 * Heroku
 * PostGres
