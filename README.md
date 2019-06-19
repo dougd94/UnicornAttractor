@@ -10,6 +10,15 @@ Use card number 4242424242424242
 Any cvc number of three digits 
 and any expiry date in the future.
 
+#### Staff Login
+username: teststaff
+
+pw: mystuff11
+
+login at /admin
+
+can change features and bugs but not anything else
+
 ## UX
 
 * User Story: I want a sign up link on the first page I visit, as im here to make a bug or feature request.
