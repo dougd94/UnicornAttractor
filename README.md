@@ -108,7 +108,10 @@ I was happy with the result.
 
 ### Bugs
 when you remove something from the cart it pops back in, I did not have time to fix this.
+If you delete a feature whilst it is in someones cart it causes crashes, this is why there is no delete feature.
+However if you delete something via the admin panel it will cause a crash too!
 
+You will need to reset the database on heroku if this happens(or delete the sqlite3 file if local)
 
 ## To run locally (on cloud 9)
 
