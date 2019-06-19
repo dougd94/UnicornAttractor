@@ -17,7 +17,7 @@ pw: mystuff11
 
 login at /admin
 
-can change features and bugs but not anything else
+can change features and bugs but not anything else. ie: set their status to To Do/Doing or Finished etc.
 
 ## UX
 
