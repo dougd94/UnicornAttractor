@@ -132,7 +132,7 @@ To install your requirements from requirements.txt file
 
 You will need to create a env.py file. .gitignore your env file as it contains senstive info.
 
-You will need to create an env file, [see sample env file](../sample_env.py)
+You will need to create an env file, [see sample env file](/sample_env.py)
 
 You will need to create a SECRET_KEY and Stripe keys.
 
