@@ -40,7 +40,7 @@ def feature_detail(request, pk):
     return render(request, "featuredetail.html", context)
     
 @login_required 
-def create_or_edit_feature(request, pk=None):
+def create_feature(request, pk=None):
     """
     create a feature 
     """

@@ -63,7 +63,7 @@ def bug_upvote(request, bug_id):
         
   
 @login_required 
-def create_or_edit_bug(request, pk=None):
+def create_bug(request, pk=None):
     """
     create a bug 
     """

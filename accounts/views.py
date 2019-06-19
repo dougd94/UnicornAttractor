@@ -51,6 +51,12 @@ def Get_Data(request,**kwargs):
     featureFinished = Feature.objects.filter(status="F").filter(paid = True).count()
     labels5 = ["Features To Do", "Features Doing", "Features Finished"]
     default5 = [featureToDo, featureDoing, featureFinished]
+    # chart 6 bugs per week
+    labels6 = ["Bugs done per day", "Bugs done per week", "Bugs done per month"]
+    default6 = [1, 5, 20]
+    # chart 7 features per week
+    labels7 = ["Features done per day", "Features done per week", "Features done per month"]
+    default7 = [2, 10, 40]
     data= {
         # chart1 features bugs
         "labels": labels,
@@ -68,6 +74,12 @@ def Get_Data(request,**kwargs):
         # chart 5 feature doing to do
         "labels5" : labels5,
         "default5" : default5,
+        # charts 6 bugs per week
+        "labels6" : labels6,
+        "default6" : default6,
+         # charts 7 features per week
+        "labels7" : labels7,
+        "default7" : default7,
     } 
 
     return JsonResponse(data)

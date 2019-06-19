@@ -18,7 +18,6 @@ def add_to_cart(request, id):
         cart = request.session.get('cart', {})
         cart[id] = 1
         request.session['cart'] = cart
-        # print(cart)
         return redirect(reverse('view_cart'))
    
     else:
@@ -31,6 +30,7 @@ def remove_cart(request, id):
     Adjust the quantity of the specified feature to the specified
     amount
     """
+    
     cart = request.session.get('cart', {})
     # pops feature from cart on click
     cart.pop(id)

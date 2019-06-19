@@ -1,9 +1,18 @@
 $(document).ready(function() {
     var endpoint = "/accounts/chart/data/";
-    var DefaultData = []
     var labels = []
     var labels2 = []
+    var labels3 = []
+    var labels4 = []
+    var labels5 = []
+    var labels6 = []
+    var DefaultData = []
     var DefaultData2 = []
+    var DefaultData3 = []
+    var DefaultData4 = []
+    var DefaultData5 = []
+    var DefaultData6 = []
+    
     $.ajax({
         method: "GET",
         url: endpoint,
@@ -58,7 +67,7 @@ $(document).ready(function() {
                         borderWidth: 1
                     }]
                 }
-            })
+            });
             // chart 3 most upvotes
             labels3 = data.labels3;
             DefaultData3 = data.default3;
@@ -81,7 +90,7 @@ $(document).ready(function() {
                         borderWidth: 1
                     }]
                 }
-            })
+            });
             // chart 4 doingdone for bugs
             labels4 = data.labels4;
             DefaultData4 = data.default4;
@@ -106,7 +115,7 @@ $(document).ready(function() {
                         borderWidth: 1
                     }]
                 }
-            })
+            });
             // chart 5 doingdone for features
             labels5 = data.labels5;
             DefaultData5 = data.default5;
@@ -131,9 +140,60 @@ $(document).ready(function() {
                         borderWidth: 1
                     }]
                 }
-            })
-        },
 
+            });
+
+            // chart 6 bugs per week
+            labels6 = data.labels6;
+            DefaultData6 = data.default6;
+            var ctx6 = document.getElementById('bugsperweek').getContext('2d');
+            var bugsperweek = new Chart(ctx6, {
+                type: 'pie',
+                data: {
+                    labels: labels6,
+                    datasets: [{
+                        label: 'Bugs done',
+                        data: DefaultData6,
+                        backgroundColor: [
+                            'rgba(227, 140, 149, 0.2)',
+                            'rgba(245, 222, 178, 0.2)',
+                            'rgba(193, 207, 148,0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(227, 140, 149, 1)',
+                            'rgba(245, 222, 178, 1)',
+                            "rgba(193, 207, 148, 1)",
+                        ],
+                        borderWidth: 1
+                    }]
+                }
+            });
+              // chart 7 features per week
+            labels7 = data.labels7;
+            DefaultData7 = data.default7;
+            var ctx7 = document.getElementById('featuressperweek').getContext('2d');
+            var featuresperweek = new Chart(ctx7, {
+                type: 'pie',
+                data: {
+                    labels: labels7,
+                    datasets: [{
+                        label: 'Feeatures done',
+                        data: DefaultData7,
+                        backgroundColor: [
+                            'rgba(227, 140, 149, 0.2)',
+                            'rgba(245, 222, 178, 0.2)',
+                            'rgba(193, 207, 148,0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(227, 140, 149, 1)',
+                            'rgba(245, 222, 178, 1)',
+                            "rgba(193, 207, 148, 1)",
+                        ],
+                        borderWidth: 1
+                    }]
+                }
+            });
+        },
 
         error: function(error_data) {
             console.log("error");

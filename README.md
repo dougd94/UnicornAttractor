@@ -37,7 +37,9 @@ and any expiry date in the future.
 * Users can use a "forget you password" feature.
 * Users can view statistics of current features and bugs on the homepage.
 * Admins can change the status (from the choices: To Do, Doing and Fininshed) within the admin panel
+
 ## Technologies Used
+
 * Cloud 9
 * Html 5
 * Css
@@ -77,7 +79,7 @@ only Forms.py / Views.py or Models.py
 * Bugs 64%
 * Features 65%
 * Cart 51%
-* Checkout 61%
+* Checkout 66%
 
 ### Manual Testing
 Non Logged in user:
@@ -99,5 +101,8 @@ Logged in user:
 
 I opened the website in developer tools and checked how it looked in a variety of devices.
 I opened it in firefox and chrome and saw no major issues.
-I found that you could register without putting in an email address.
+I found that you could register without putting in an email address, I fixed this.
 I was happy with the result.
+
+### Bugs
+when you remove something from the cart it pops back in, I did not have time to fix this.
