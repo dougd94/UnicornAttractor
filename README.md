@@ -106,3 +106,40 @@ I was happy with the result.
 
 ### Bugs
 when you remove something from the cart it pops back in, I did not have time to fix this.
+
+
+## To run locally (on cloud 9)
+Set up a virtual env by copying this into your terminal "wget -q https://git.io/v77xs -O /tmp/setup-workspace.sh && source /tmp/setup-workspace.sh" without the inverted commas.
+To install your requirements from requirements.txt file
+"pip3 install -r requirements.txt"
+You will need to create a env.py file. .gitignore your env file as it contains senstive info.
+You will need to create an env file, [see sample env file](../sample_env.py)
+You will need to create a SECRET_KEY and Stripe keys.
+You can comment out
+os.environ.setdefault('DATABASE_URL', '') in your env.py file, you will eventually need postgres which you can get on herkou.
+
+You will need to type to migrate your data to database:
+python3 ./manage.py makemigrations
+python3 ./manage.py migrate
+./manage.py createsuperuser (I reccomend the username Admin, as this is your admin account)
+you can access the admin panel at /admin once your site is running
+
+
+Copy to your terminal: "python3 manage.py collectstatic"
+This will allow whitenoise to create a staticfiles directory which is neccesary for deployment
+
+To run the server copy this to the terminal: "python3 manage.py runserver $IP:$C9_PORT"
+
+## Deployment
+* Create an account and then app on heroku 
+* follow the instructions by copying the terminal commands to connect to heroku git
+* add the postgres addon
+* copy the database url into your env file
+
+### Config Variables
+Copy everything from env.py into your config variables. ex: "STRIPE_PUBLISHABLE" : "12424"
+add DISABLE_COLLECTSTATIC set it to 1
+Follow the migration procedure from the run locally section
+On cloud9 do: git add . then do a git commit ( git commit -m "message") a git push
+You can now push to heroku with the following command
+git push heroku master
