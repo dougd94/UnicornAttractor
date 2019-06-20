@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load bootstrap_tags %}
+{% if not message in messages %}<span class="form-margin"></span></span>{% endif %}
+{% block content %}
+    <h1>Add Feature</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|as_bootstrap}}
+        <p>The cost for a new feature is <strong>€50</strong></p>
+        <button type="submit" class="btn btn-success">Create Feature</button>
+        <br>
+        <p><label>You must pay for the feature before it shows up in the feature page. </label></p>
+    </form>
+{% endblock %}

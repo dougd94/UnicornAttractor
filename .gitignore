@@ -1,0 +1,9 @@
+*.sqlite3
+*.sqlite
+db.sqlite3
+.pyc
+.~c9
+__pycache__/
+env.py
+.~c9_invoke_7GkLgS.py
+htmlcov

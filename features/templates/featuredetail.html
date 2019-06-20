@@ -1,0 +1,58 @@
+{% extends "base.html" %} {% load bootstrap_tags %} {% block content %}
+<div class="container">
+    {% if not message in messages %}<span class="form-margin"></span></span>{% endif %}
+    <div class="row">
+        <div class="text-center">
+            <h1>Feature Request: {{ feature.name|capfirst }}</h1>
+            <!--if its not paid yet it shows this-->
+            {% if feature.paid == False %}
+            <label for="add">You must pay before it is listed</label>
+            <form id="add" method="POST" action="{% url 'add_to_cart' feature.id %}">
+                {%csrf_token%}
+                <button class="btn btn-success">Add to Cart</button>
+            </form>
+            {% endif %}
+            <p>
+                <div class="{{feature.status}}">Status: <strong>{{ feature.get_status_display }}</strong></div>
+            </p>
+            <p>
+                <h5>Author: {{feature.author|capfirst}}</h5>
+            </p>
+            <p><span class="">Created on:</span> {{ feature.created_date }} </p>
+            <!--it will not show upvote unless paid-->
+            {% if feature.paid == True %}
+            (you can upvote features as many times as you wish)
+            <br>
+            <a href="{% url 'feature_upvote' feature.id %}"><span class="badge">Upvote Price: €5.00</span>
+            <i class="material-icons upvotedark" alt="upvote">arrow_upward</i>
+            <span class="badge">{{ feature.upvotes }}</span></a>
+            {% endif %}
+            <span class=""><i class="material-icons" alt="views">remove_red_eye</i><span class="badge">{{ feature.views }}</span></span>
+
+            <div class="row">
+                <h3>Feature Description:</h3>
+                <p>{{feature.description}}</p>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <form method="POST" class="form-width">
+            {% csrf_token %} {{comment_form|as_bootstrap}} {% if request.user.is_authenticated %}
+            <button class='btn btn-success' type='submit'>Comment</button> {% else %}
+            <!--shows disabled comment button if user not loged in-->
+            <button class='btn btn-success' type='submit' disabled>Comment</button> {% endif %}
+        </form>
+        <div class="comments-section">
+            <h3>{{comments.count}} Comment{{comments|pluralize}}:</h3>
+            {% for comment in comments %}
+            <blockquote>
+                <p>{{comment.content}}</p>
+                <small>by <cite title="Source Title">{{comment.author|capfirst}}</cite> on {{comment.created_date}}</small>
+            </blockquote>
+            <hr> {% endfor %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}
